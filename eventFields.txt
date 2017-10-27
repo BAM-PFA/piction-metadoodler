@@ -1,0 +1,22 @@
+$title = $_POST['name'];
+$year = $_POST['year'];
+$fulldate = $_POST['fulldate'];
+$eventseries = $_POST['eventseries'];
+$relatedex = $_POST['relatedex'];
+$location = $_POST['location'];
+$description = $_POST['description'];
+$eventtype = $_POST['eventtype'];
+$people = $_POST['people'];
+$subject = $_POST['subject'];
+$organizer = $_POST['organizer'];
+$source = $_POST['source'];
+$copyright = $_POST['copyright'];
+$credit = $_POST['credit'];
+$tags[] = $_POST['name'];
+$caption = $_POST['caption'];
+$restrictions = $_POST['restrictions'];
+$uploader = $_POST['uploader'];
+
+title,year,fulldate,eventseries,relatedex,location,description,eventtype,people,subject,organizer,source,copyright,tags,caption,restrictions,uploader\n
+
+$title,$year,$fulldate,$eventseries,$relatedex,$location,$description,$eventtype,$people,$subject,$organizer,$source,$copyright,$tags,$caption,$restrictions,$uploader\n
