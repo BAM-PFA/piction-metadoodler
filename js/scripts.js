@@ -29,3 +29,29 @@ function addTag(divName){
           newdiv.innerHTML = "<label for='anothertag'><span>Tag</span><input type='text' name='tagarray[]'/></label>";
           document.getElementById(divName).appendChild(newdiv);
 }
+
+// function hoverdiv(e,divid){
+
+//     var left  = e.clientX  + "px";
+//     var top  = e.clientY  + "px";
+
+//     var div = document.getElementById(divid);
+
+//     div.style.left = left;
+//     div.style.top = top;
+
+//     $("#"+divid).toggle();
+//     return false;
+// }
+
+function hoverdiv(e,divid){ 
+
+    var left = e.clientX + "px"; 
+    var top = e.clientY + "px"; 
+
+    $("#"+divid).css('left',left); 
+    $("#"+divid).css('top',top); 
+    $("#"+divid).css('position','fixed'); 
+    $("#"+divid).toggle(); 
+    return false; 
+}

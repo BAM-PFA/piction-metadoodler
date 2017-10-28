@@ -107,3 +107,10 @@ div.tab button.active {
     border: 1px solid #ccc;
     border-top: none;
 }
+
+.textbox {
+    background-color: tomato;
+    color: white;
+    padding: 10px;
+
+}
