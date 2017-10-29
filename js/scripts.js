@@ -30,28 +30,28 @@ function addTag(divName){
           document.getElementById(divName).appendChild(newdiv);
 }
 
-// function hoverdiv(e,divid){
 
-//     var left  = e.clientX  + "px";
-//     var top  = e.clientY  + "px";
+// function hoverdiv(e,divid){ 
 
-//     var div = document.getElementById(divid);
+//     var left = e.clientX + "px"; 
+//     var top = e.clientY + "px"; 
 
-//     div.style.left = left;
-//     div.style.top = top;
-
-//     $("#"+divid).toggle();
-//     return false;
+//     $("#"+divid).css('left',left); 
+//     $("#"+divid).css('top',top); 
+//     $("#"+divid).css('position','fixed'); 
+//     $("#"+divid).toggle(); 
+//     return false; 
 // }
 
 function hoverdiv(e,divid){ 
+    if ($('#doShowHints').is(':checked')){
+        var left = e.clientX + "px"; 
+        var top = e.clientY + "px"; 
 
-    var left = e.clientX + "px"; 
-    var top = e.clientY + "px"; 
-
-    $("#"+divid).css('left',left); 
-    $("#"+divid).css('top',top); 
-    $("#"+divid).css('position','fixed'); 
-    $("#"+divid).toggle(); 
-    return false; 
+        $("#"+divid).css('left',left); 
+        $("#"+divid).css('top',top); 
+        $("#"+divid).css('position','fixed'); 
+        $("#"+divid).toggle(); 
+        return false; 
+        }
 }

@@ -11,9 +11,11 @@ echo "<pre>";
  print_r($_FILES); 
 echo "/<pre>"; 
 
-$METADATA = "filepath,BAMPFA.TITLE,BAMPFA.YEAR,fulldate,
-    eventseries,relatedex,location,description,eventtype,people,subject,
-    organizer,source,copyright,tags,caption,restrictions,uploader\n";
+$METADATA = "FILENAME,BAMPFA.TITLE,BAMPFA.ARTIST,BAMPFA.YEAR,EVENTS.DC-COVERAGE,
+    EVENTS.DC-PUBLISHER,EVENTS.RELATED_EXHIBITIONS,EVENTS.EVENT_LOCATION,EVENTS.DC-DESCRIPTION,EVENTS.DC-TYPE,
+    EVENTS.DC-SUBJECT,EVENTS.TOPICAL_SUBJECT,EVENTS.ORGANIZER,EVENTS.DC-CONTRIBUTOR,EVENTS.DC-RIGHTS,
+    EVENTS.DC-AUTHOR,EVENTS.TAGS,EVENTS.BAM_PFA_CAPTION,EVENTS.RESTRICTIONS,EVENTS.DC-CREATOR,
+    OTHER.STUFF\n";
 
 
 //  ------  MOVE FILES -------------
@@ -31,26 +33,32 @@ foreach($_FILES['file']['tmp_name'] as $key => $tmp_name ){
         // ----- GENERATE CSV VALUES ----------
         $filepath = "ftp://something.or.other/" . $file_name;
         $bampfatitle = $_POST['bampfatitle'];
-        $year = $_POST['year'];
-        $fulldate = $_POST['fulldate'];
+        $bampfaartist = $_POST['bampfaartist'];
+        $bampfayear = $_POST['bampfayear'];
+        $eventfulldate = $_POST['eventfulldate'];
         $eventseries = $_POST['eventseries'];
-        $relatedex = $_POST['relatedex'];
-        $location = $_POST['location'];
-        $description = $_POST['description'];
+        $eventrelatedex = $_POST['eventrelatedex'];
+        $eventlocation = $_POST['eventlocation'];
+        $eventdescription = $_POST['eventdescription'];
         $eventtype = $_POST['eventtype'];
-        $people = $_POST['people'];
-        $subject = $_POST['subject'];
-        $organizer = $_POST['organizer'];
-        $source = $_POST['source'];
-        $copyright = $_POST['copyright'];
-        $credit = $_POST['credit'];
-        $tagarray = $_POST['tagarray'];
-        $tags = implode(";", $tagarray);
-        $caption = $_POST['caption'];
-        $restrictions = $_POST['restrictions'];
-        $uploader = $_POST['uploader'];
+        $eventpeople = $_POST['eventpeople'];
+        $eventsubject = $_POST['eventsubject'];
+        $eventorganizer = $_POST['eventorganizer'];
+        $eventimagesource = $_POST['eventimagesource'];
+        $eventimagecopyright = $_POST['eventimagecopyright'];
+        $eventcredit = $_POST['eventcredit'];
+        $eventtagarray = $_POST['eventtagarray'];
+        $eventtags = implode(";", $eventtagarray);
+        $eventbampfacaption = $_POST['eventbampfacaption'];
+        $eventrestrictions = $_POST['eventrestrictions'];
+        $eventuploader = $_POST['eventuploader'];
 
-        $METADATA .= "$filepath,$title,$year,$fulldate,$eventseries,$relatedex,$location,$description,$eventtype,$people,$subject,$organizer,$source,$copyright,$tags,$caption,$restrictions,$uploader\n";
+        $METADATA .= "$filepath,$bampfatitle,$bampfayear,$eventfulldate,
+            $eventseries,$eventrelatedex,$eventlocation,$description,$eventtype,
+            $eventpeople,$eventsubject,$eventorganizer,$eventimagesource,$eventimagecopyright,
+            $tags,$eventbampfacaption,$eventrestrictions,$eventuploader,
+            
+            \n";
 
 
     } else { 
@@ -61,9 +69,6 @@ foreach($_FILES['file']['tmp_name'] as $key => $tmp_name ){
 }
 
 
-
-
-// $METADATA .= "$filepath,$title,$year,$fulldate,$eventseries,$relatedex,$location,$description,$eventtype,$people,$subject,$organizer,$source,$copyright,$tags,$caption,$restrictions,$uploader\n";
 
 $metaCSVname = "/Users/michael/Sites/pictionHelper/uploads/metadata.csv";
 

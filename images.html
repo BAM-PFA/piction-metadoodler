@@ -29,6 +29,9 @@ window.onbeforeunload = function (e) {
 <div class="textbox" id="eventfulldate" style="position: fixed;display:none;">Date of the event, formatted YYYY-MM-DD</div>
 <div class="textbox" id="filmContrib" style="position: fixed;display:none;">The source of the image. NOTE: this is not always (and often is not) the same as the source of the  film itself.</div>
 
+<input type="radio" id="doShowHints" name="hints" value="yes"/>Show Hints!
+<input type="radio" id="hideHints" name="hints" value="no"/>Hide Hints!
+
 <div class="tab">
   <button class="tablinks" onclick="openCity(event, 'Events')">Events</button>
   <button class="tablinks" onclick="openCity(event, 'filmstills')">Film Stills</button>
@@ -52,14 +55,14 @@ window.onbeforeunload = function (e) {
 		<label for="eventseries">
 			<span>Event Series</span><textarea name="eventseries"></textarea>
 		</label>
-		<label for="relatedex">
-			<span>Related Exhibition</span><input type="text" name="relatedex"/>
+		<label for="eventrelatedex">
+			<span>Related Exhibition</span><input type="text" name="eventrelatedex"/>
 		</label>
-		<label for="location">
-			<span>Location</span><input type="text" name="location"/>
+		<label for="eventlocation">
+			<span>Location</span><input type="text" name="eventlocation"/>
 		</label>
-		<label for="description">
-			<span>Description</span><input type="text" name="description" onkeyup="adjust_textarea(this)"/>
+		<label for="eventdescription">
+			<span>Description</span><input type="text" name="eventdescription" onkeyup="adjust_textarea(this)"/>
 		</label>
 		<label for="eventtype">
 			<span>Event type</span>
@@ -71,39 +74,39 @@ window.onbeforeunload = function (e) {
 					<option value="children">Children</option>
 				</select>
 		</label>
-		<label for="people"> <!-- THIS TAG ALSO NEEDS TO BE SEMI-COLON DELIMITED-->
-			<span>People pictured</span><input type="text" name="people"/>
+		<label for="eventpeople"> <!-- THIS TAG ALSO NEEDS TO BE SEMI-COLON DELIMITED-->
+			<span>People pictured</span><input type="text" name="eventpeople"/>
 		</label>
-		<label for="subject">
-			<span>Topical subject</span><input type="text" name="subject"/>
+		<label for="eventsubject">
+			<span>Topical subject</span><input type="text" name="eventsubject"/>
 		</label>
-		<label for="organizer">
-			<span>Event organizer</span><input type="text" name="organizer"/>
+		<label for="eventorganizer">
+			<span>Event organizer</span><input type="text" name="eventorganizer"/>
 		</label>
-		<label for="source">
-			<span>Image source</span><input type="text" name="source"/>
+		<label for="eventimagesource">
+			<span>Image source</span><input type="text" name="eventimagesource"/>
 		</label>
-		<label for="copyright">
-			<span>Photo copyright</span><input type="text" name="copyright"/>
+		<label for="eventimagecopyright">
+			<span>Photo copyright</span><input type="text" name="eventimagecopyright"/>
 		</label>
-		<label for="credit">
-			<span>Photo credit</span><input type="text" name="credit"/>
+		<label for="eventcredit">
+			<span>Photo credit</span><input type="text" name="eventcredit"/>
 		</label>
-		<label for="tagarray">
+		<label for="eventtagarray"> <!-- THIS NEEDS TO BE DE-FUCKED PER CATEGORY -->
 			<span>Tag</span>
-			<div id="tagarray">
-			    <input type="text" name="tagarray[]"/>
+			<div id="eventtagarray">
+			    <input type="text" name="eventtagarray[]"/>
 		    </div>
-	    	<input type="button" value="Add a tag" onClick="addTag('tagarray');">
+	    	<input type="button" value="Add a tag" onClick="addTag('eventtagarray');">
 		</label>
-		<label for="caption">
-			<span>BAMPFA caption</span><input type="text" name="caption"/>
+		<label for="eventbampfacaption">
+			<span>BAMPFA caption</span><input type="text" name="eventbampfacaption"/>
 		</label>
-		<label for="restrictions">
-			<span>Restrictions</span><input type="text" name="restrictions"/>
+		<label for="eventrestrictions">
+			<span>Restrictions</span><input type="text" name="eventrestrictions"/>
 		</label>
-		<label for="uploader">
-			<span>Uploader</span><input type="text" name="uploader"/>
+		<label for="eventuploader">
+			<span>Uploade r</span><input type="text" name="eventuploader"/>
 		</label>
 		<label>
 			<span>&nbsp;</span><input type="submit" value="Submit" name="submit"/>
