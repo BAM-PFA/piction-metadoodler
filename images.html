@@ -33,12 +33,12 @@ window.onbeforeunload = function (e) {
 <input type="radio" id="hideHints" name="hints" value="no"/>Hide Hints!
 
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'Events')">Events</button>
+  <button class="tablinks" onclick="openCity(event, 'events')">Events</button>
   <button class="tablinks" onclick="openCity(event, 'filmstills')">Film Stills</button>
   <button class="tablinks" onclick="openCity(event, 'exhibitions')">Gallery Exhibition Images</button>
 </div>
 
-<div id="Events" class="tabcontent">
+<div id="events" class="tabcontent">
 	<form class="form-style-4" action="metadata.php" enctype="multipart/form-data" method="post">
 		<label for="file">
 			<span>Choose file(s):</span><input id="file" name="file[]" type="file" multiple="multiple" />
@@ -119,84 +119,59 @@ window.onbeforeunload = function (e) {
 		<label for="file">
 			<span>Choose file(s):</span><input id="file" name="file[]" type="file" multiple="multiple" />
 		</label>
-		<br>
+
 		<label for="bampfatitle">
 			<span>Title</span><input type="text" name="bampfatitle"/>
 		</label>
-		<br>
+
 		<label for="bampfaartist">
 			<span>Artist/Filmmaker</span><input type="text" name="bampfaartist"/>
 		</label>
-		<br>
+
 		<label for="bampfayear">
 			<span>Year</span><input type="text" name="bampfayear"/>
 		</label>
-		<br>
-		<label for="description">
-			<span>Description</span><input type="text" name="description" onkeyup="adjust_textarea(this)"/>
+
+		<label for="filmdescription">
+			<span>Description</span><input type="text" name="filmdescription"/>
+		</label>
+		<label for="filmcontrib">
+			<span onmouseover="hoverdiv(event,'filmContrib')" onmouseout="hoverdiv(event,'filmcontrib')">Contributor/Image Source</span><input type="text" name="filmcontrib" />
 		</label>
 		<br>
-		<label for="filmContrib">
-			<span onmouseover="hoverdiv(event,'filmContrib')" onmouseout="hoverdiv(event,'filmContrib')">Contributor/Image Source</span><input type="text" name="filmContrib" />
+		<label for="filmrights">
+			<span>Rights</span><input type="text" name="filmrights"></textarea>
 		</label>
-		<br>
-		<label for="rights">
-			<span>Rights</span><input type="text" name="eventseries"></textarea>
+		<label for="filmseries">
+			<span>Title of PFA Series</span><input type="text" name="filmseries"/>
 		</label>
-		<br>
-		<label for="relatedex">
-			<span>Related Exhibition</span><input type="text" name="relatedex"/>
-		</label>
-		<br>
-		<label for="location">
-			<span>Location</span><input type="text" name="location"/>
-		</label>
-		<br>
-		<label for="eventtype">
-			<span>Event type</span>
-				<select name="eventtype">
-					<option value="">Select an event type</option>
-					<option value="film">Film</option>
-					<option value="lecture">Lecture</option>
-					<option value="artist talk">Artist Talk</option>
-					<option value="children">Children</option>
+		<label for="filmtype">
+			<span>Film still type</span>
+				<select name="filmtype">
+					<option value="">Select a film still type</option>
+					<option value="film">Production still</option>
+					<option value="lecture">Portrait</option>
+					<option value="artist talk">Director/actor shot</option>
 				</select>
 		</label>
-		<br>
-		<label for="people"> <!-- THIS TAG ALSO NEEDS TO BE SEMI-COLON DELIMITED-->
-			<span>People pictured</span><input type="text" name="people"/>
+		<label for="filmpeople"> <!-- THIS TAG ALSO NEEDS TO BE SEMI-COLON DELIMITED-->
+			<span>People pictured</span><input type="text" name="filmpeople"/>
 		</label>
-		<br>
-		<label for="subject">
-			<span>Topical subject</span><input type="text" name="subject"/>
-		</label>
-		<label for="organizer">
-			<span>Event organizer</span><input type="text" name="organizer"/>
-		</label>
-		<label for="source">
-			<span>Image source</span><input type="text" name="source"/>
-		</label>
-		<label for="copyright">
-			<span>Photo copyright</span><input type="text" name="copyright"/>
-		</label>
-		<label for="credit">
-			<span>Photo credit</span><input type="text" name="credit"/>
-		</label>
-		<label for="tagarray">
+		<label for="filmtagarray">
 			<span>Tag</span>
-			<div id="tagarray">
-			    <input type="text" name="tagarray[]"/>
+			<div id="filmtagarray">
+			    <input type="text" name="filmtagarray[]"/>
 		    </div>
-	    	<input type="button" value="Add a tag" onClick="addTag('tagarray');">
+	    	<input type="button" value="Add a tag" onClick="addTag('filmtagarray');">
 		</label>
-		<label for="caption">
-			<span>BAMPFA caption</span><input type="text" name="caption"/>
+		<label for="filmbampfacaption">
+			<span>BAMPFA caption</span><input type="text" name="filmbampfacaption"/>
 		</label>
-		<label for="restrictions">
-			<span>Restrictions</span><input type="text" name="restrictions"/>
+		<label for="filmrestrictions">
+			<span>Restrictions</span><input type="text" name="filmrestrictions"/>
 		</label>
-		<label for="uploader">
-			<span>Uploader</span><input type="text" name="uploader"/>
+		<label for="filmuploader">
+			<span>Uploader</span><input type="text" name="filmuploader"/>
 		</label>
 		<label>
 			<span>&nbsp;</span><input type="submit" value="Submit" name="submit"/>
@@ -204,9 +179,94 @@ window.onbeforeunload = function (e) {
 	</form> 
 </div>
 
-<div id="Tokyo" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
+<div id="exhibitions" class="tabcontent">
+  <form class="form-style-4" action="metadata.php" enctype="multipart/form-data" method="post">
+		<label for="file">
+			<span>Choose file(s):</span><input id="file" name="file[]" type="file" multiple="multiple" />
+		</label>
+
+		<label for="exhnameofexh">
+			<span>Title</span><input type="text" name="exhnameofexh"/>
+		</label>
+
+		<label for="bampfaartist">
+			<span>Artist/Filmmaker</span><input type="text" name="bampfaartist"/>
+		</label>
+
+		<label for="bampfayear">
+			<span>Year of exhibition</span><input type="text" name="bampfayear"/>
+		</label>
+		<label for="exhfulldate">
+			<span onmouseover="hoverdiv(event,'exhfulldate')" onmouseout="hoverdiv(event,'exhfulldate')">Full dates of exhibition</span><input type="text" name="exhfulldate"/>
+		</label>
+		<br>
+		<label for="exhartworktitle">
+			<span>Title of single artwork</span><input type="text" name="exhartworktitle"/>
+		</label>
+		<br>
+		<label for="exhdescription">
+			<span>Description</span><input type="text" name="exhdescription"/>
+		</label>
+		<label for="exhcreditline">
+			<span onmouseover="hoverdiv(event,'exhCreditLine')" onmouseout="hoverdiv(event,'exhCreditLine')">Artwork Credit Line</span><input type="text" name="exhcreditline" />
+		</label>
+		<br>
+		<label for="filmrights">
+			<span>Rights</span><input type="text" name="filmrights"></textarea>
+		</label>
+		<label for="exhcurator">
+			<span>Curator(s)</span><input type="text" name="exhcurator"/>
+		</label>
+		<label for="exhmedium">
+			<span>Medium of artwork</span>
+				<select name="filmtype">
+					<option value="">Select a medium</option>
+					<option value="Video">Video</option>
+					<option value="Painting">Painting</option>
+					<option value="artist talk">Felt and Fat</option>
+				</select>
+		</label>
+		<label for="exhimagetype">
+			<span>Image type</span>
+				<select name="exhimagetype">
+					<option value="">Select an image type:</option>
+					<option value="Installation">Installation</option>
+					<option value="Portrait">Portrait</option>
+				</select>
+		</label>
+		<label for="exhlocation"> <!-- THIS TAG ALSO NEEDS TO BE SEMI-COLON DELIMITED-->
+			<span>Location of exhibition</span><input type="text" name="exhlocation"/>
+		</label>
+		<br>
+		<label for="exhsource">
+			<span>Image source</span><input type="text" name="exhsource"/>
+		</label>
+		<label for="exhcopyright">
+			<span>Photo copyright</span><input type="text" name="exhcopyright"/>
+		</label>
+		<label for="exhphotocredit">
+			<span>Photo credit</span><input type="text" name="exhphotocredit"/>
+		</label>
+		<label for="exhtagarray">
+			<span>Tag</span>
+			<div id="exhtagarray">
+			    <input type="text" name="exhtagarray[]"/>
+		    </div>
+	    	<input type="button" value="Add a tag" onClick="addTag('exhtagarray');">
+		</label>
+		<label for="exhbampfacaption">
+			<span>BAMPFA caption</span><input type="text" name="exhbampfacaption"/>
+		</label>
+		<label for="exhrestrictions">
+			<span>Restrictions</span><input type="text" name="exhrestrictions"/>
+		</label>
+		<label for="exhuploader">
+			<span>Uploader</span><input type="text" name="exhuploader"/>
+		</label>
+		<label>
+			<span>&nbsp;</span><input type="submit" value="Submit" name="submit"/>
+		</label>
+	</form>
 </div>
 
 

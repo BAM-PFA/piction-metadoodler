@@ -24,24 +24,13 @@ function adjust_textarea(h) {
     h.style.height = (h.scrollHeight)+"px";
 }
 
+// need to make tag arrays usable per category
+
 function addTag(divName){
           var newdiv = document.createElement('div');
           newdiv.innerHTML = "<label for='anothertag'><span>Tag</span><input type='text' name='tagarray[]'/></label>";
           document.getElementById(divName).appendChild(newdiv);
 }
-
-
-// function hoverdiv(e,divid){ 
-
-//     var left = e.clientX + "px"; 
-//     var top = e.clientY + "px"; 
-
-//     $("#"+divid).css('left',left); 
-//     $("#"+divid).css('top',top); 
-//     $("#"+divid).css('position','fixed'); 
-//     $("#"+divid).toggle(); 
-//     return false; 
-// }
 
 function hoverdiv(e,divid){ 
     if ($('#doShowHints').is(':checked')){
