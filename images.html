@@ -40,6 +40,7 @@ window.onbeforeunload = function (e) {
 
 <div id="events" class="tabcontent">
 	<form class="form-style-4" action="metadata.php" enctype="multipart/form-data" method="post">
+		<input type="hidden" name="category" value="events">
 		<label for="file">
 			<span>Choose file(s):</span><input id="file" name="file[]" type="file" multiple="multiple" />
 		</label>
@@ -92,12 +93,12 @@ window.onbeforeunload = function (e) {
 		<label for="eventcredit">
 			<span>Photo credit</span><input type="text" name="eventcredit"/>
 		</label>
-		<label for="eventtagarray"> <!-- THIS NEEDS TO BE DE-FUCKED PER CATEGORY -->
+		<label for="eventtagarray">
 			<span>Tag</span>
 			<div id="eventtagarray">
 			    <input type="text" name="eventtagarray[]"/>
 		    </div>
-	    	<input type="button" value="Add a tag" onClick="addTag('eventtagarray');">
+	    	<input type="button" value="Add a tag" onClick="addTag('eventtagarray','event');">
 		</label>
 		<label for="eventbampfacaption">
 			<span>BAMPFA caption</span><input type="text" name="eventbampfacaption"/>
@@ -116,6 +117,7 @@ window.onbeforeunload = function (e) {
 
 <div id="filmstills" class="tabcontent">
   <form class="form-style-4" action="metadata.php" enctype="multipart/form-data" method="post">
+		<input type="hidden" name="category" value="filmstills">
 		<label for="file">
 			<span>Choose file(s):</span><input id="file" name="file[]" type="file" multiple="multiple" />
 		</label>
@@ -162,7 +164,7 @@ window.onbeforeunload = function (e) {
 			<div id="filmtagarray">
 			    <input type="text" name="filmtagarray[]"/>
 		    </div>
-	    	<input type="button" value="Add a tag" onClick="addTag('filmtagarray');">
+	    	<input type="button" value="Add a tag" onClick="addTag('filmtagarray','film');">
 		</label>
 		<label for="filmbampfacaption">
 			<span>BAMPFA caption</span><input type="text" name="filmbampfacaption"/>
@@ -181,6 +183,7 @@ window.onbeforeunload = function (e) {
 
 <div id="exhibitions" class="tabcontent">
   <form class="form-style-4" action="metadata.php" enctype="multipart/form-data" method="post">
+		<input type="hidden" name="category" value="exhibitions">
 		<label for="file">
 			<span>Choose file(s):</span><input id="file" name="file[]" type="file" multiple="multiple" />
 		</label>
@@ -252,7 +255,7 @@ window.onbeforeunload = function (e) {
 			<div id="exhtagarray">
 			    <input type="text" name="exhtagarray[]"/>
 		    </div>
-	    	<input type="button" value="Add a tag" onClick="addTag('exhtagarray');">
+	    	<input type="button" value="Add a tag" onClick="addTag('exhtagarray','exh');">
 		</label>
 		<label for="exhbampfacaption">
 			<span>BAMPFA caption</span><input type="text" name="exhbampfacaption"/>
