@@ -26,7 +26,7 @@ function adjust_textarea(h) {
 
 function addTag(divName,cat){
           var newdiv = document.createElement('div');
-          newdiv.innerHTML = "<label for='tag'><span>Tag</span><input type='text' name='"+cat+"tagarray[]'/></label>";
+          newdiv.innerHTML = "<input type='text' class='form-control' name='"+cat+"tagarray[]'/>";
           document.getElementById(divName).appendChild(newdiv);
 }
 
