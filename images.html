@@ -1,422 +1,349 @@
 <!DOCTYPE html>
 <html lang='en'>
 
-<head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/style.css"/>
-	<script type="text/javascript" src="js/scripts.js"></script>
-	<h1><div style="text-align: center"><span class="badge badge-secondary">(ABANDON ALL HOPE, YE WHO) ENTER METADATA HERE</span><br/><br/></div></h1>
-</head>
-<body>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/style.css">
+		<script type="text/javascript" src="js/scripts.js"></script>
+		<script>
+			function preview_images(){
+				var total_file=document.getElementById("file").files.length;
+				console.log(total_file);
+				for(var i=0;i<total_file;i++){
+					$('#image_preview').append("<div class='col-md'><img class='img-responsive' style='max-height: 200px' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
+				}
+			}
+		</script>
+	</head>
+	<body>
 
-	<div id="accordion" role="tablist">
-		<div class="card">
-			<div class="card-header" role="tab" id="headingOne">
-				<h5 class="mb-0">
-					<a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						Enter information for EVENT images
-					</a>
-				</h5>
-			</div>
+		<div id="accordion" role="tablist">
+			<div class="card">
+				<div class="card-header" role="tab" id="headingEvents">
+					<h5 class="mb-0">
+						<a data-toggle="collapse" href="#collapseEVENTS" aria-expanded="true" aria-controls="collapseEVENTS">
+							Enter information for EVENT images
+						</a>
+					</h5>
+				</div>
 
-			<div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-				<div class="card-body">
-					<form  action="metadata.php" enctype="multipart/form-data" method="post">
+				<div id="collapseEVENTS" class="collapse" role="tabpanel" aria-labelledby="headingEvents" data-parent="#accordion">
+					<div class="card-body">
+						<form  action="metadata.php" enctype="multipart/form-data" method="post">
 
-						<input type="hidden" name="category" value="events"/>
-						<div class="form-group">
-							<input class="form-control-file" id="file" name="file[]" type="file" multiple="multiple" />
-							<!-- <span class="custom-file-control"></span> -->
-						</div>
-						<div class="form-group">
-							<label for="bampfatitle">Title</label>
-							<input class="form-control" type="text" name="bampfatitle"/>
-						</div>
-						<div class="form-group">
-							<label for="bampfayear">Year</label>
-							<input class="form-control" type="text" name="bampfayear"/>
-						</div>
-						<div class="form-group">
-							<label for="eventfulldate">Full date of event</label>
-							<input class="form-control" type="text" name="eventfulldate"/>
-						</div>
-						<div class="form-group">
-							<label for="eventseries">Event Series</label>
-							<input class="form-control" type="text" name="eventseries"/>
-						</div>
-						<div class="form-group">
-							<label for="eventrelatedex">Related Exhibition</label>
-							<input class="form-control" type="text" name="eventrelatedex"/>
-						</div>
-						<div class="form-group">
-							<label for="eventlocation">Location</label>
-							<input class="form-control" type="text" name="eventlocation"/>
-						</div>
-						<div class="form-group">
-							<label for="eventdescription">Description</label>
-							<input class="form-control" type="text" name="eventdescription" onkeyup="adjust_textarea(this)"/>
-						</div>
-						<div class="form-group">
-							<label for="eventtype">Event type</label>
-							<select name="eventtype" class="form-control">
-								<option value="">Select an event type</option>
-								<option value="film">Film</option>
-								<option value="lecture">Lecture</option>
-								<option value="artist talk">Artist Talk</option>
-								<option value="children">Children</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="eventpeople">People pictured</label>
-							<input type="text" class="form-control" name="eventpeople"/>
-						</div>
-						<div class="form-group">
-							<label for="eventsubject">Topical subject</label>
-							<input type="text" class="form-control" name="eventsubject"/>
-						</div>
-						<div class="form-group">
-							<label for="eventorganizer">Event organizer</label>
-							<input type="text" class="form-control" name="eventorganizer"/>
-						</div>
-						<div class="form-group">
-							<label for="eventimagesource">Image source</label>
-							<input type="text" class="form-control" name="eventimagesource"/>
-						</div>
-						<div class="form-group">
-							<label for="eventimagecopyright">Photo copyright</label>
-							<input type="text" class="form-control" name="eventimagecopyright"/>
-						</div>
-						<div class="form-group">
-							<label for="eventcredit">Photo credit</label>
-							<input type="text" class="form-control" name="eventcredit"/>
-						</div>
-						<div class="form-group" id="eventtagarray">
-							<label for="eventtagarray">Tag(s)</label>
-							<!-- <div id="eventtagarray"> -->
-							<input type="text" class="form-control" name="eventtagarray[]"/>
-							<!-- </div> -->
-						</div>
-						<div class="form-group">    
-							<input type="button" value="Add a tag" onClick="addTag('eventtagarray','event');"/>
-						</div>
-						<div class="form-group">
-							<label for="eventbampfacaption">BAMPFA caption</label>
-							<input type="text" class="form-control" name="eventbampfacaption"/>
-						</div>
-						<div class="form-group">
-							<label for="eventrestrictions">Restrictions</label>
-							<input type="text" class="form-control" name="eventrestrictions"/>
-						</div>
-						<div class="form-group">
-							<label for="eventuploader">Uploader</label>
-							<input type="text" class="form-control" name="eventuploader"/>
-						</div>
-						<div class="form-group">
-							<input type="submit" value="Submit" name="submit"/>
-						</div>
+							<input type="hidden" name="category" value="events"/>
+							<div class="form-group">
+								<input class="form-control-file" id="file" name="file[]" type="file" onchange="preview_images();" multiple />
+								<!--  -->
+							</div>
+							<div class="form-group">
+								<label for="bampfatitle">Title</label>
+								<input class="form-control" type="text" name="bampfatitle"/>
+							</div>
+							<div class="form-group">
+								<label for="bampfayear">Year</label>
+								<input class="form-control" type="text" name="bampfayear"/>
+							</div>
+							<div class="form-group">
+								<label for="eventfulldate">Full date of event</label>
+								<input class="form-control" type="text" name="eventfulldate"/>
+							</div>
+							<div class="form-group">
+								<label for="eventseries">Event Series</label>
+								<input class="form-control" type="text" name="eventseries"/>
+							</div>
+							<div class="form-group">
+								<label for="eventrelatedex">Related Exhibition</label>
+								<input class="form-control" type="text" name="eventrelatedex"/>
+							</div>
+							<div class="form-group">
+								<label for="eventlocation">Location</label>
+								<input class="form-control" type="text" name="eventlocation"/>
+							</div>
+							<div class="form-group">
+								<label for="eventdescription">Description</label>
+								<input class="form-control" type="text" name="eventdescription" onkeyup="adjust_textarea(this)"/>
+							</div>
+							<div class="form-group">
+								<label for="eventtype">Event type</label>
+								<select name="eventtype" class="form-control">
+									<option value="">Select an event type</option>
+									<option value="film">Film</option>
+									<option value="lecture">Lecture</option>
+									<option value="artist talk">Artist Talk</option>
+									<option value="children">Children</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="eventpeople">People pictured</label>
+								<input type="text" class="form-control" name="eventpeople"/>
+							</div>
+							<div class="form-group">
+								<label for="eventsubject">Topical subject</label>
+								<input type="text" class="form-control" name="eventsubject"/>
+							</div>
+							<div class="form-group">
+								<label for="eventorganizer">Event organizer</label>
+								<input type="text" class="form-control" name="eventorganizer"/>
+							</div>
+							<div class="form-group">
+								<label for="eventimagesource">Image source</label>
+								<input type="text" class="form-control" name="eventimagesource"/>
+							</div>
+							<div class="form-group">
+								<label for="eventimagecopyright">Photo copyright</label>
+								<input type="text" class="form-control" name="eventimagecopyright"/>
+							</div>
+							<div class="form-group">
+								<label for="eventcredit">Photo credit</label>
+								<input type="text" class="form-control" name="eventcredit"/>
+							</div>
+							<div class="form-group" id="eventtagarray">
+								<label for="eventtagarray">Tag(s)</label>
+								<!-- <div id="eventtagarray"> -->
+								<input type="text" class="form-control" name="eventtagarray[]"/>
+								<!-- </div> -->
+							</div>
+							<div class="form-group">    
+								<input type="button" value="Add a tag" onClick="addTag('eventtagarray','event');"/>
+							</div>
+							<div class="form-group">
+								<label for="eventbampfacaption">BAMPFA caption</label>
+								<input type="text" class="form-control" name="eventbampfacaption"/>
+							</div>
+							<div class="form-group">
+								<label for="eventrestrictions">Restrictions</label>
+								<input type="text" class="form-control" name="eventrestrictions"/>
+							</div>
+							<div class="form-group">
+								<label for="eventuploader">Uploader</label>
+								<input type="text" class="form-control" name="eventuploader"/>
+							</div>
+							<div class="form-group">
+								<input type="submit" value="Submit" name="submit" />
+							</div>
+
+						</form>
 					</div>
 				</div>
-			</form>
-		</div>
-	</div>
-	<div class="card">
-		<div class="card-header" role="tab" id="headingTwo">
-			<h5 class="mb-0">
-				<a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					Enter information for FILM images
-				</a>
-			</h5>
-		</div>
-		<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-			<div class="card-body">
-				Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
 			</div>
-		</div>
-	</div>
-	<div class="card">
-		<div class="card-header" role="tab" id="headingThree">
-			<h5 class="mb-0">
-				<a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-					Enter information for EXHIBITION images
-				</a>
-			</h5>
-		</div>
-		<div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-			<div class="card-body">
-				Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+
+			<div class="card">
+				<div class="card-header" role="tab" id="headingFilm">
+					<h5 class="mb-0">
+						<a class="collapsed" data-toggle="collapse" href="#collapseFilm" aria-expanded="false" aria-controls="collapseFilm">
+							Enter information for FILM images
+						</a>
+					</h5>
+				</div>
+
+				<div id="collapseFilm" class="collapse" role="tabpanel" aria-labelledby="headingFilm" data-parent="#accordion">
+					<div class="card-body">
+						<form  action="metadata.php" enctype="multipart/form-data" method="post">
+							<input type="hidden" name="category" value="film"/>
+							<div class="form-group">
+								<input class="form-control-file" id="file" name="file[]" type="file"  multiple="multiple"/>
+								<!-- onchange="preview_images();"-->
+							</div>
+							<div class="form-group">
+								<label for="bampfatitle">Title</label>
+								<input class="form-control" type="text" name="bampfatitle"/>
+							</div>
+							<div class="form-group">
+								<label for="bampfaartist">Artist/Filmmaker</label>
+								<input class="form-control" type="text" name="bampfaartist"/>
+							</div>
+							<div class="form-group">
+								<label for="bampfayear">Year</label>
+								<input class="form-control" type="text" name="bampfayear"/>
+							</div>
+							<div class="form-group">
+								<label for="filmdescription">Description</label>
+								<input class="form-control" type="text" name="filmdescription"/>
+							</div>
+							<div class="form-group">
+								<label for="filmcontrib">Contributor/Image Source</label>
+								<input class="form-control" type="text" name="filmcontrib"/>
+							</div>
+							<div class="form-group">
+								<label for="filmrights">Rights statement</label>
+								<input class="form-control" type="text" name="filmrights"/>
+							</div>
+							<div class="form-group">
+								<label for="filmseries">Title of PFA Series</label>
+								<input class="form-control" type="text" name="filmseries"/>
+							</div>
+							<div class="form-group">
+								<label for="filmtype">Film still type</label>
+								<select name="filmtype" class="form-control">
+									<option value="">Select an film still type</option>
+									<option value="Production still">Production still</option>
+									<option value="Portrait">Portrait</option>
+									<option value="Director/actor shot">Director/actor shot</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="filmpeople">People pictured</label>
+								<input type="text" class="form-control" name="filmpeople"/>
+							</div>
+							<div class="form-group" id="filmtagarray">
+								<label for="filmtagarray">Tag(s)</label>
+								<input type="text" class="form-control" name="filmtagarray[]"/>
+							</div>
+							<div class="form-group">   
+								<label  id="addatag"></label>
+								<input type="button" value="Add a tag" onClick="addTag('filmtagarray','film');"/>
+							</div>
+							<div class="form-group">
+								<label for="filmbampfacaption">BAMPFA caption</label>
+								<input type="text" class="form-control" name="filmbampfacaption"/>
+							</div>
+							<div class="form-group">
+								<label for="filmrestrictions">Restrictions</label>
+								<input type="text" class="form-control" name="filmrestrictions"/>
+							</div>
+							<div class="form-group">
+								<label for="filmuploader">Uploader</label>
+								<input type="text" class="form-control" name="filmuploader"/>
+							</div>
+							<div class="form-group">
+								<input type="submit" value="Submit" name="submit"/>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
+
+			<div class="card">
+					<div class="card-header" role="tab" id="headingExh">
+						<h5 class="mb-0">
+							<a class="collapsed" data-toggle="collapse" href="#collapseExh" aria-expanded="false" aria-controls="collapseExh">
+								Enter information for EXHIBITION images
+							</a>
+						</h5>
+					</div>
+					<div id="collapseExh" class="collapse" role="tabpanel" aria-labelledby="headingExh" data-parent="#accordion">
+						<div class="card-body">
+							<form  action="metadata.php" enctype="multipart/form-data" method="post">
+
+								<input type="hidden" name="category" value="exhibitions"/>
+								<div class="form-group">
+									<input class="form-control-file" id="file" name="file[]" type="file"  multiple="multiple" />
+									<!-- onchange="preview_images();" -->
+								</div>
+								<div class="form-group">
+									<label for="bampfatitle">Title</label>
+									<input class="form-control" type="text" name="bampfatitle"/>
+								</div>
+								<div class="form-group">
+									<label for="bampfaartist">Artist/Filmmaker</label>
+									<input class="form-control" type="text" name="bampfaartist"/>
+								</div>
+								<div class="form-group">
+									<label for="bampfayear">Year of exhibition</label>
+									<input class="form-control" type="text" name="bampfayear"/>
+								</div>
+								<div class="form-group">
+									<label for="exhfulldate">Full dates of exhibition</label>
+									<input class="form-control" type="text" name="exhfulldate"/>
+								</div>
+								<div class="form-group">
+									<label for="exhartworktitle">Title of single artwork</label>
+									<input class="form-control" type="text" name="exhartworktitle"/>
+								</div>
+								<div class="form-group">
+									<label for="exhmedium">Medium of artwork</label>
+									<select name="exhmedium" class="form-control">
+										<option value="">Select a medium</option>
+										<option value="Video">Video</option>
+										<option value="Painting">Painting</option>
+										<option value="Stuff">Felt and Fat</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="exhcreditline">Artwork credit line</label>
+									<input class="form-control" type="text" name="exhcreditline"/>
+								</div>
+								<div class="form-group">
+									<label for="exhdescription">Description</label>
+									<input class="form-control" type="text" name="exhdescription"/>
+								</div>
+								<div class="form-group">
+									<label for="exhrights">Rights statement</label>
+									<input class="form-control" type="text" name="exhrights"/>
+								</div>
+								<div class="form-group">
+									<label for="exhcurator">Curator(s)</label>
+									<input class="form-control" type="text" name="exhcurator"/>
+								</div>
+								<div class="form-group">
+									<label for="exhimagetype">Image type</label>
+									<select name="filmtype" class="form-control">
+										<option value="">Select a image type</option>
+										<option value="Installation Image">Installation shot</option>
+										<option value="Portrait">Portrait</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="filmpeople">Location of exhibition</label>
+									<input type="text" class="form-control" name="filmpeople"/>
+								</div>
+								<div class="form-group">
+									<label for="exhlocation">Image source</label>
+									<input type="text" class="form-control" name="exhlocation"/>
+								</div>
+								<div class="form-group">
+									<label for="exhsource">Image source</label>
+									<input type="text" class="form-control" name="exhsource"/>
+								</div>
+								<div class="form-group">
+									<label for="exhcopyright">Photo copyright</label>
+									<input type="text" class="form-control" name="exhcopyright"/>
+								</div>
+								<div class="form-group">
+									<label for="exhphotocredit">Photo credit</label>
+									<input type="text" class="form-control" name="exhphotocredit"/>
+								</div>
+								<div class="form-group" id="exhtagarray">
+									<label for="exhtagarray">Tag(s)</label>
+									<input type="text" class="form-control" name="exhtagarray[]"/>
+								</div>
+								<div class="form-group">    
+									<input type="button" value="Add a tag" onClick="addTag('exhtagarray','exh');"/>
+								</div>
+								<div class="form-group">
+									<label for="filmbampfacaption">BAMPFA caption</label>
+									<input type="text" class="form-control" name="filmbampfacaption"/>
+								</div>
+								<div class="form-group">
+									<label for="filmrestrictions">Restrictions</label>
+									<input type="text" class="form-control" name="filmrestrictions"/>
+								</div>
+								<div class="form-group">
+									<label for="filmuploader">Uploader</label>
+									<input type="text" class="form-control" name="filmuploader"/>
+								</div>
+								<div class="form-group">
+									<input type="submit" value="Submit" name="submit"/>
+								</div>
+
+							</form>
+
+						</div>
+					</div>
+			</div>
+
 		</div>
-	</div>
-</div>
 
-<!--
-<script>
-window.onbeforeunload = function (e) {
-e = e || window.event;
+		<div class="row" id="image_preview"></div>
 
-// For IE and Firefox prior to version 4
-if (e) {
-e.returnValue = 'Sure?';
-}
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<!--<script src="js/jquery.js"></script>-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	</body>
 
-// For Safari
-return "don't close the window yet";
-};
-</script>
--->
-<!--
-<div class="textbox" id="eventfulldate" style="position: fixed;display:none;">Date of the event, formatted YYYY-MM-DD</div>
-<div class="textbox" id="filmContrib" style="position: fixed;display:none;">The source of the image. NOTE: this is not always (and often is not) the same as the source of the  film itself.</div>
-
-<input type="radio" id="doShowHints" name="hints" value="yes"/>Show Hints!
-<input type="radio" id="hideHints" name="hints" value="no"/>Hide Hints!
-
-<div class="tab">
-<button class="tablinks" onclick="openCity(event, 'events')">Events</button>
-<button class="tablinks" onclick="openCity(event, 'filmstills')">Film Stills</button>
-<button class="tablinks" onclick="openCity(event, 'exhibitions')">Gallery Exhibition Images</button>
-</div>
-
-<div id="events" class="tabcontent">
-<form  action="metadata.php" enctype="multipart/form-data" method="post">
-<div class="form-group"><input type="hidden" name="category" value="events">
-<label for="file">
-Choose file(s):<input id="file" name="file[]" type="file" multiple="multiple" />
-</label>
-<label for="bampfatitle">
-Title<input type="text" name="bampfatitle"/>
-</label>
-<label for="bampfayear">
-Year<input type="text" name="bampfayear"/>
-</label>
-<label for="eventfulldate">
-<span onmouseover="hoverdiv(event,'eventfulldate')" onmouseout="hoverdiv(event,'eventfulldate')">Full date of event<input type="text" name="eventfulldate"/>
-</label>
-<label for="eventseries">
-Event Series<textarea name="eventseries"></textarea>
-</label>
-<label for="eventrelatedex">
-Related Exhibition<input type="text" name="eventrelatedex"/>
-</label>
-<label for="eventlocation">
-Location<input type="text" name="eventlocation"/>
-</label>
-<label for="eventdescription">
-Description<input type="text" name="eventdescription" onkeyup="adjust_textarea(this)"/>
-</label>
-<label for="eventtype">
-Event type
-<select name="eventtype">
-<option value="">Select an event type</option>
-<option value="film">Film</option>
-<option value="lecture">Lecture</option>
-<option value="artist talk">Artist Talk</option>
-<option value="children">Children</option>
-</select>
-</label>
-<label for="eventpeople"> 
-People pictured<input type="text" name="eventpeople"/>
-</label>
-<label for="eventsubject">
-Topical subject<input type="text" name="eventsubject"/>
-</label>
-<label for="eventorganizer">
-Event organizer<input type="text" name="eventorganizer"/>
-</label>
-<label for="eventimagesource">
-Image source<input type="text" name="eventimagesource"/>
-</label>
-<label for="eventimagecopyright">
-Photo copyright<input type="text" name="eventimagecopyright"/>
-</label>
-<label for="eventcredit">
-Photo credit<input type="text" name="eventcredit"/>
-</label>
-<label for="eventtagarray">
-Tag
-<div id="eventtagarray">
-<input type="text" name="eventtagarray[]"/>
-</div>
-<input type="button" value="Add a tag" onClick="addTag('eventtagarray','event');">
-</label>
-<label for="eventbampfacaption">
-BAMPFA caption<input type="text" name="eventbampfacaption"/>
-</label>
-<label for="eventrestrictions">
-Restrictions<input type="text" name="eventrestrictions"/>
-</label>
-<label for="eventuploader">
-Uploade r<input type="text" name="eventuploader"/>
-</label>
-<label>
-&nbsp;<input type="submit" value="Submit" name="submit"/>
-</label>
-</div>
-</form>
-</div>
-
-<div id="filmstills" class="tabcontent">
-<form class="form-style-4" action="metadata.php" enctype="multipart/form-data" method="post">
-<input type="hidden" name="category" value="filmstills">
-<label for="file">
-Choose file(s):<input id="file" name="file[]" type="file" multiple="multiple" />
-</label>
-
-<label for="bampfatitle">
-Title<input type="text" name="bampfatitle"/>
-</label>
-
-<label for="bampfaartist">
-Artist/Filmmaker<input type="text" name="bampfaartist"/>
-</label>
-
-<label for="bampfayear">
-Year<input type="text" name="bampfayear"/>
-</label>
-
-<label for="filmdescription">
-Description<input type="text" name="filmdescription"/>
-</label>
-<label for="filmcontrib">
-<span onmouseover="hoverdiv(event,'filmContrib')" onmouseout="hoverdiv(event,'filmcontrib')">Contributor/Image Source<input type="text" name="filmcontrib" />
-</label>
-<br>
-<label for="filmrights">
-Rights<input type="text" name="filmrights"></textarea>
-</label>
-<label for="filmseries">
-Title of PFA Series<input type="text" name="filmseries"/>
-</label>
-<label for="filmtype">
-Film still type
-<select name="filmtype">
-<option value="">Select a film still type</option>
-<option value="film">Production still</option>
-<option value="lecture">Portrait</option>
-<option value="artist talk">Director/actor shot</option>
-</select>
-</label>
-<label for="filmpeople"> 
-People pictured<input type="text" name="filmpeople"/>
-</label>
-<label for="filmtagarray">
-Tag
-<div id="filmtagarray">
-<input type="text" name="filmtagarray[]"/>
-</div>
-<input type="button" value="Add a tag" onClick="addTag('filmtagarray','film');">
-</label>
-<label for="filmbampfacaption">
-BAMPFA caption<input type="text" name="filmbampfacaption"/>
-</label>
-<label for="filmrestrictions">
-Restrictions<input type="text" name="filmrestrictions"/>
-</label>
-<label for="filmuploader">
-Uploader<input type="text" name="filmuploader"/>
-</label>
-<label>
-&nbsp;<input type="submit" value="Submit" name="submit"/>
-</label>
-</form> 
-</div>
-
-<div id="exhibitions" class="tabcontent">
-<form class="form-style-4" action="metadata.php" enctype="multipart/form-data" method="post">
-<input type="hidden" name="category" value="exhibitions">
-<label for="file">
-Choose file(s):<input id="file" name="file[]" type="file" multiple="multiple" />
-</label>
-
-<label for="exhnameofexh">
-Title<input type="text" name="exhnameofexh"/>
-</label>
-
-<label for="bampfaartist">
-Artist/Filmmaker<input type="text" name="bampfaartist"/>
-</label>
-
-<label for="bampfayear">
-Year of exhibition<input type="text" name="bampfayear"/>
-</label>
-<label for="exhfulldate">
-<span onmouseover="hoverdiv(event,'exhfulldate')" onmouseout="hoverdiv(event,'exhfulldate')">Full dates of exhibition<input type="text" name="exhfulldate"/>
-</label>
-<br>
-<label for="exhartworktitle">
-Title of single artwork<input type="text" name="exhartworktitle"/>
-</label>
-<br>
-<label for="exhdescription">
-Description<input type="text" name="exhdescription"/>
-</label>
-<label for="exhcreditline">
-<span onmouseover="hoverdiv(event,'exhCreditLine')" onmouseout="hoverdiv(event,'exhCreditLine')">Artwork Credit Line<input type="text" name="exhcreditline" />
-</label>
-<br>
-<label for="filmrights">
-Rights<input type="text" name="filmrights"></textarea>
-</label>
-<label for="exhcurator">
-Curator(s)<input type="text" name="exhcurator"/>
-</label>
-<label for="exhmedium">
-Medium of artwork
-<select name="filmtype">
-<option value="">Select a medium</option>
-<option value="Video">Video</option>
-<option value="Painting">Painting</option>
-<option value="artist talk">Felt and Fat</option>
-</select>
-</label>
-<label for="exhimagetype">
-Image type
-<select name="exhimagetype">
-<option value="">Select an image type:</option>
-<option value="Installation">Installation</option>
-<option value="Portrait">Portrait</option>
-</select>
-</label>
-<label for="exhlocation">
-Location of exhibition<input type="text" name="exhlocation"/>
-</label>
-<br>
-<label for="exhsource">
-Image source<input type="text" name="exhsource"/>
-</label>
-<label for="exhcopyright">
-Photo copyright<input type="text" name="exhcopyright"/>
-</label>
-<label for="exhphotocredit">
-Photo credit<input type="text" name="exhphotocredit"/>
-</label>
-<label for="exhtagarray">
-Tag
-<div id="exhtagarray">
-<input type="text" name="exhtagarray[]"/>
-</div>
-<input type="button" value="Add a tag" onClick="addTag('exhtagarray','exh');">
-</label>
-<label for="exhbampfacaption">
-BAMPFA caption<input type="text" name="exhbampfacaption"/>
-</label>
-<label for="exhrestrictions">
-Restrictions<input type="text" name="exhrestrictions"/>
-</label>
-<label for="exhuploader">
-Uploader<input type="text" name="exhuploader"/>
-</label>
-<label>
-&nbsp;<input type="submit" value="Submit" name="submit"/>
-</label>
-</form>
-</div>
--->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-</body>
-
+		
 
 
 </html> 
