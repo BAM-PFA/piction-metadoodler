@@ -32,10 +32,11 @@
 
 							<input type="hidden" name="category" value="events"/>
 							<div class="form-group">
-								<input class="form-control-file" id="fileEvent" name="file[]" type="file" onchange="preview_images('fileEvent');" multiple="multiple" />
+								<input class="form-control-file" id="fileEvent" name="file[]" type="file"  multiple="multiple" />
+								<!-- onchange="preview_images('fileEvent');" -->
 							</div>
 							<div class="form-group">
-								<label for="bampfatitle">Title</label>
+								<label for="bampfatitle">Title</label><img data-toggle="tooltip" title="Title of the event" style='max-height: 25px' src='question.png'/>
 								<input class="form-control" type="text" name="bampfatitle"/>
 							</div>
 							<div class="form-group">
