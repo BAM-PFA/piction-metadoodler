@@ -4,7 +4,7 @@ function ftpFile($source,$ftpDir,$basename){
 	echo $source . "....". $ftpDir . "....". $basename . "....". $remoteFile;
 	$pictionServer = 'ucb1.piction.com';
 	$conn_id  = ftp_connect($pictionServer) or die("Could not connect to $pictionServer");
-	$login = ftp_login($conn_id , 'bampfa', 'QDp4Tp25');
+	$login = ftp_login($conn_id , 'bampfa', '');
 
 	ftp_chdir($conn_id, $ftpDir);
 
