@@ -36,35 +36,35 @@
 								<!-- onchange="preview_images('fileEvent');" -->
 							</div>
 							<div class="form-group">
-								<label for="bampfatitle">Title</label><img data-toggle="tooltip" title="Title of the event" style='max-height: 25px' src='question.png'/>
+								<img data-toggle="tooltip" title="Title of the event" style='max-height: 20px' src='question.png'/><label for="bampfatitle">&nbsp;&nbsp;Title</label>
 								<input class="form-control" type="text" name="bampfatitle"/>
 							</div>
 							<div class="form-group">
-								<label for="bampfayear">Year</label>
+								<img data-toggle="tooltip" title="Year of the event" style='max-height: 20px' src='question.png'/><label for="bampfayear">&nbsp;&nbsp;Year</label>
 								<input class="form-control" type="text" name="bampfayear"/>
 							</div>
 							<div class="form-group">
-								<label for="eventfulldate">Full date of event</label>
+								<img data-toggle="tooltip" title="Date of the event, formatted YYYY-MM-DD" style='max-height: 20px' src='question.png'/><label for="eventfulldate">&nbsp;&nbsp;Full date of event</label>
 								<input class="form-control" type="text" name="eventfulldate"/>
 							</div>
 							<div class="form-group">
-								<label for="eventseries">Event Series</label>
+								<img data-toggle="tooltip" title="If the event is part of a series (Architecture of Life Lunchtime Talks; Art Lab workshops; Art Lab open session; Full; etc.) enter it here as it appears in the program guide" style='max-height: 20px' src='question.png'/><label for="eventseries">&nbsp;&nbsp;Event Series</label>
 								<input class="form-control" type="text" name="eventseries"/>
 							</div>
 							<div class="form-group">
-								<label for="eventrelatedex">Related Exhibition</label>
+								<img data-toggle="tooltip" title="If the event is related to a gallery exhibition, enter the name of the exhibition here as it appears in the program guide" style='max-height: 20px' src='question.png'/><label for="eventrelatedex">&nbsp;&nbsp;Related Exhibition</label>
 								<input class="form-control" type="text" name="eventrelatedex"/>
 							</div>
 							<div class="form-group">
-								<label for="eventlocation">Location</label>
+								<img data-toggle="tooltip" title="If the location of the event is noteworthy, especially if it is offsite, enter it here (Ciampi Building; Powerhouse Gallery; etc.DD" style='max-height: 20px' src='question.png'/><label for="eventlocation">&nbsp;&nbsp;Location</label>
 								<input class="form-control" type="text" name="eventlocation"/>
 							</div>
 							<div class="form-group">
-								<label for="eventdescription">Description</label>
+								<img data-toggle="tooltip" title="Text description of the event" style='max-height: 20px' src='question.png'/><label for="eventdescription">&nbsp;&nbsp;Description</label>
 								<input class="form-control" type="text" name="eventdescription" onkeyup="adjust_textarea(this)"/>
 							</div>
 							<div class="form-group">
-								<label for="eventtype">Event type</label>
+								<img data-toggle="tooltip" title="Pick from the dropdown" style='max-height: 20px' src='question.png'/><label for="eventtype">&nbsp;&nbsp;Event type</label>
 								<select name="eventtype" class="form-control">
 									<option value="">Select an event type</option>
 									<option value="film">Film</option>
@@ -74,31 +74,31 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="eventpeople">People pictured</label>
+								<img data-toggle="tooltip" title="People in image, if significant" style='max-height: 20px' src='question.png'/><label for="eventpeople">&nbsp;&nbsp;People pictured</label>
 								<input type="text" class="form-control" name="eventpeople"/>
 							</div>
 							<div class="form-group">
-								<label for="eventsubject">Topical subject</label>
+								<img data-toggle="tooltip" title="Topical subject keywords if considered important" style='max-height: 20px' src='question.png'/><label for="eventsubject">&nbsp;&nbsp;Topical subject</label>
 								<input type="text" class="form-control" name="eventsubject"/>
 							</div>
 							<div class="form-group">
-								<label for="eventorganizer">Event organizer</label>
+								<img data-toggle="tooltip" title="Name of the event organizer, if significant" style='max-height: 20px' src='question.png'/><label for="eventorganizer">&nbsp;&nbsp;Event organizer</label>
 								<input type="text" class="form-control" name="eventorganizer"/>
 							</div>
 							<div class="form-group">
-								<label for="eventimagesource">Image source</label>
+								<img data-toggle="tooltip" title="Image source if the image came from outside BAMPFA and should be noted (for example, a headshot courtesy of a book publisher; an image from a modeling agency; etc.)" style='max-height: 20px' src='question.png'/><label for="eventimagesource">&nbsp;&nbsp;Image source</label>
 								<input type="text" class="form-control" name="eventimagesource"/>
 							</div>
 							<div class="form-group">
-								<label for="eventimagecopyright">Photo copyright</label>
+								<img data-toggle="tooltip" title="Copyright statement for image, if known" style='max-height: 20px' src='question.png'/><label for="eventimagecopyright">&nbsp;&nbsp;Photo copyright</label>
 								<input type="text" class="form-control" name="eventimagecopyright"/>
 							</div>
 							<div class="form-group">
-								<label for="eventcredit">Photo credit</label>
+								<img data-toggle="tooltip" title="Name of photographer" style='max-height: 20px' src='question.png'/><label for="eventcredit">&nbsp;&nbsp;Photo credit</label>
 								<input type="text" class="form-control" name="eventcredit"/>
 							</div>
 							<div class="form-group" id="eventtagarray">
-								<label for="eventtagarray">Tag(s)</label>
+								<img data-toggle="tooltip" title="Relevant Piction tags" style='max-height: 20px' src='question.png'/><label for="eventtagarray">&nbsp;&nbsp;Tag(s)</label>
 								<!-- <div id="eventtagarray"> -->
 								<input type="text" class="form-control" name="eventtagarray[]"/>
 								<!-- </div> -->
@@ -107,15 +107,15 @@
 								<input type="button" value="Add a tag" onClick="addTag('eventtagarray','event');"/>
 							</div>
 							<div class="form-group">
-								<label for="eventbampfacaption">BAMPFA caption</label>
+								<img data-toggle="tooltip" title="Copy/paste any caption to be used in Program Guide/Website" style='max-height: 20px' src='question.png'/><label for="eventbampfacaption">&nbsp;&nbsp;BAMPFA caption</label>
 								<input type="text" class="form-control" name="eventbampfacaption"/>
 							</div>
 							<div class="form-group">
-								<label for="eventrestrictions">Restrictions</label>
+								<img data-toggle="tooltip" title="Restrictions on use of the image" style='max-height: 20px' src='question.png'/><label for="eventrestrictions">&nbsp;&nbsp;Restrictions</label>
 								<input type="text" class="form-control" name="eventrestrictions"/>
 							</div>
 							<div class="form-group">
-								<label for="eventuploader">Uploader</label>
+								<img data-toggle="tooltip" title="Name of BAMPFA staff who uploaded the image to Piction" style='max-height: 20px' src='question.png'/><label for="eventuploader">&nbsp;&nbsp;Uploader</label>
 								<input type="text" class="form-control" name="eventuploader"/>
 							</div>
 							<div class="form-group">
@@ -283,12 +283,12 @@
 								</div>
 								<div class="form-group">
 									<label for="filmpeople">Location of exhibition</label>
-									<input type="text" class="form-control" name="filmpeople"/>
-								</div>
-								<div class="form-group">
-									<label for="exhlocation">Image source</label>
 									<input type="text" class="form-control" name="exhlocation"/>
 								</div>
+								<!-- <div class="form-group">
+									<label for="exhlocation">Image source</label>
+									<input type="text" class="form-control" name=""/>
+								</div> -->
 								<div class="form-group">
 									<label for="exhsource">Image source</label>
 									<input type="text" class="form-control" name="exhsource"/>
