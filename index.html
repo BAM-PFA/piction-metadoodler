@@ -230,27 +230,27 @@
 									<input class="form-control-file" id="fileExh" name="file[]" type="file" onchange="preview_images('fileExh');" multiple="multiple"/>
 								</div>
 								<div class="form-group">
-									<label for="bampfatitle">Title</label>
+									<img data-toggle="tooltip" title="Title of the Exhibition as it appears in the Program Guide." style='max-height: 20px' src='question.png'/><label for="bampfayear">&nbsp;&nbsp;Year</label><label for="bampfatitle">Title</label>
 									<input class="form-control" type="text" name="bampfatitle"/>
 								</div>
 								<div class="form-group">
-									<label for="bampfaartist">Artist/Filmmaker</label>
+									<img data-toggle="tooltip" title="If there is a single artist, enter the name here. Multiple artists can go in Description below" style='max-height: 20px' src='question.png'/><label for="bampfaartist">Artist/Filmmaker</label>
 									<input class="form-control" type="text" name="bampfaartist"/>
 								</div>
 								<div class="form-group">
-									<label for="bampfayear">Year of exhibition</label>
+									<img data-toggle="tooltip" title="Year the exhibition opened to the public" style='max-height: 20px' src='question.png'/><label for="bampfayear">Year of exhibition</label>
 									<input class="form-control" type="text" name="bampfayear"/>
 								</div>
 								<div class="form-group">
-									<label for="exhfulldate">Full dates of exhibition</label>
+									<img data-toggle="tooltip" title="Full date range of the exhibition, formatted 'YYYY-MM-DD - YYYY-MM-DD'" style='max-height: 20px' src='question.png'/><label for="exhfulldate">Full dates of exhibition</label>
 									<input class="form-control" type="text" name="exhfulldate"/>
 								</div>
 								<div class="form-group">
-									<label for="exhartworktitle">Title of single artwork</label>
+									<img data-toggle="tooltip" title="" style='max-height: 20px' src='question.png'/><label for="exhartworktitle">Title of single artwork</label>
 									<input class="form-control" type="text" name="exhartworktitle"/>
 								</div>
 								<div class="form-group">
-									<label for="exhmedium">Medium of artwork</label>
+									<img data-toggle="tooltip" title="" style='max-height: 20px' src='question.png'/><label for="exhmedium">Medium of artwork</label>
 									<select name="exhmedium" class="form-control">
 										<option value="">Select a medium</option>
 										<option value="Video">Video</option>
@@ -259,23 +259,24 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="exhcreditline">Artwork credit line</label>
+									<img data-toggle="tooltip" title="" style='max-height: 20px' src='question.png'/><label for="exhcreditline">Artwork credit line</label>
 									<input class="form-control" type="text" name="exhcreditline"/>
 								</div>
 								<div class="form-group">
-									<label for="exhdescription">Description</label>
+									<img data-toggle="tooltip" title="If there is a description of the image or the exhibition that would be useful to retain, enter it here. ALSO, if there are multiple artists’ works in the image, enter their names and titles of works (if necessary) here." style='max-height: 20px' src='question.png'/><label for="exhdescription">Description</label>
 									<input class="form-control" type="text" name="exhdescription"/>
 								</div>
 								<div class="form-group">
-									<label for="exhrights">Rights statement</label>
+									<!-- @FIXME I THINK THIS IS MAPPED TO DC.RIGHTS IN PICTION AND NEEDS TO BE COPIED TO A NEW FIELD UNDER GALLERY EXHIBITIONS -->
+									<img data-toggle="tooltip" title="Rights statement for the image (not the artwork)" style='max-height: 20px' src='question.png'/><label for="exhrights">Rights statement</label>
 									<input class="form-control" type="text" name="exhrights"/>
 								</div>
 								<div class="form-group">
-									<label for="exhcurator">Curator(s)</label>
+									<img data-toggle="tooltip" title="Name(s) of the curator(s) for the exhibition" style='max-height: 20px' src='question.png'/><label for="exhcurator">Curator(s)</label>
 									<input class="form-control" type="text" name="exhcurator"/>
 								</div>
 								<div class="form-group">
-									<label for="exhimagetype">Image type</label>
+									<img data-toggle="tooltip" title="Pick from dropdown, if relevant" style='max-height: 20px' src='question.png'/><label for="exhimagetype">Image type</label>
 									<select name="filmtype" class="form-control">
 										<option value="">Select a image type</option>
 										<option value="Installation Image">Installation shot</option>
@@ -283,27 +284,23 @@
 									</select>
 								</div>
 								<div class="form-group">
-									<label for="filmpeople">Location of exhibition</label>
+									<img data-toggle="tooltip" title="Location of the exhibition, if significant (Gallery 2, Crane Forum, etc.)" style='max-height: 20px' src='question.png'/><label for="exhlocation">Location of exhibition</label>
 									<input type="text" class="form-control" name="exhlocation"/>
 								</div>
-								<!-- <div class="form-group">
-									<label for="exhlocation">Image source</label>
-									<input type="text" class="form-control" name=""/>
-								</div> -->
 								<div class="form-group">
-									<label for="exhsource">Image source</label>
+									<img data-toggle="tooltip" title="Source of the image, if known (From the artist; Image courtesy SFMoMA; etc.)" style='max-height: 20px' src='question.png'/><label for="exhsource">Image source</label>
 									<input type="text" class="form-control" name="exhsource"/>
 								</div>
 								<div class="form-group">
-									<label for="exhcopyright">Photo copyright</label>
+									<img data-toggle="tooltip" title="Copyright credit for the image (not the artwork)" style='max-height: 20px' src='question.png'/><label for="exhcopyright">Photo copyright</label>
 									<input type="text" class="form-control" name="exhcopyright"/>
 								</div>
 								<div class="form-group">
-									<label for="exhphotocredit">Photo credit</label>
+									<img data-toggle="tooltip" title="Name of photographer (not the artist), if known" style='max-height: 20px' src='question.png'/><label for="exhphotocredit">Photo credit</label>
 									<input type="text" class="form-control" name="exhphotocredit"/>
 								</div>
 								<div class="form-group" id="exhtagarray">
-									<label for="exhtagarray">Tag(s)</label>
+									<img data-toggle="tooltip" title="Add keywords. ONE PER LINE!" style='max-height: 20px' src='question.png'/><label for="exhtagarray">Tag(s)</label>
 									<input type="text" class="form-control" name="exhtagarray[]"/>
 								</div>
 								<div class="form-group">    
@@ -311,15 +308,15 @@
 									<input type="button" value="Add a tag" onClick="addTag('exhtagarray','exh');"/>
 								</div>
 								<div class="form-group">
-									<label for="exhbampfacaption">BAMPFA caption</label>
+									<img data-toggle="tooltip" title="Copy/paste any caption to be used in Program Guide/Website" style='max-height: 20px' src='question.png'/><label for="exhbampfacaption">BAMPFA caption</label>
 									<input type="text" class="form-control" name="exhbampfacaption"/>
 								</div>
 								<div class="form-group">
-									<label for="exhrestrictions">Restrictions</label>
+									<img data-toggle="tooltip" title="Restrictions on use of the image, if known" style='max-height: 20px' src='question.png'/><label for="exhrestrictions">Restrictions</label>
 									<input type="text" class="form-control" name="exhrestrictions"/>
 								</div>
 								<div class="form-group">
-									<label for="exhuploader">Uploader</label>
+									<img data-toggle="tooltip" title="Name of BAMPFA staff who uploaded the image to Piction" style='max-height: 20px' src='question.png'/><label for="exhuploader">Uploader</label>
 									<input type="text" class="form-control" name="exhuploader"/>
 								</div>
 								<div class="form-group">

@@ -7,5 +7,5 @@
 *.tiff
 *.TIFF
 *.png
+!question.png
 201*.csv
-uploads/
