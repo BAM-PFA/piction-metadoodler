@@ -10,3 +10,5 @@
 !question.png
 201*.csv
 .htaccess
+.idea
+.idea/*

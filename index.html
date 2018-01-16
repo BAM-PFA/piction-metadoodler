@@ -1,345 +1,400 @@
 <!DOCTYPE html>
 <html lang='en'>
 
-	<head>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-		<link rel="stylesheet" href="css/style.css">
-		<script type="text/javascript" src="js/scripts.js"></script>
-		<script>
-			function preview_images(fileSection){
-				var total_file=document.getElementById(fileSection).files.length;
-				console.log(total_file);
-				for(var i=0;i<total_file;i++){
-					$('#image_preview').append("<div class='col-sm'><img class='img-responsive' style='max-height: 200px' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
-				}
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<script>
+		function preview_images(fileSection){
+			var total_file=document.getElementById(fileSection).files.length;
+			console.log(total_file);
+			for(var i=0;i<total_file;i++){
+				$('#image_preview').append("<div class='col-sm'><img class='img-responsive' style='max-height: 200px' src='"+URL.createObjectURL(event.target.files[i])+"'></div>");
 			}
-		</script>
-	</head>
-	<body>
+		}
+	</script>
+</head>
+<body>
+<div class="container">
 
-		<div id="accordion" role="tablist">
-			<div class="card">
-				<div class="card-header" role="tab" id="headingEvents">
-					<h5 class="mb-0">
-						<a data-toggle="collapse" href="#collapseEVENTS" aria-expanded="true" aria-controls="collapseEVENTS">
-							Enter information for EVENT images
-						</a>
-					</h5>
-				</div>
-				<div id="collapseEVENTS" class="collapse" role="tabpanel" aria-labelledby="headingEvents" data-parent="#accordion">
-					<div class="card-body">
+	<!-- Image and text -->
+	<nav class="navbar navbar-light">
+		<a class="navbar-brand" href="#">
+			<img src="https://bampfa.org/sites/all/themes/bam_pfa/logo.jpg" width="80" class="d-inline-block align-top" alt="">
+			PICTION METADOODLER
+		</a>
+	</nav>
+
+	<div class="jumbotron">
+		<h1 class="display-5">Welcome</h1>
+		<p class="lead">Piction Metadoodler is a tool to help you upload batches of images to Piction.</p>
+		<p>Start by seleting the type of images that you are uploading.</p>
+	</div>
+
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item">
+			<a class="nav-link active" data-toggle="tab" href="#event" role="tab">Event Images</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#film" role="tab">Film Images</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#exhibition" role="tab">Exhibition Images</a>
+		</li>
+	</ul>
+	<!-- Tab panes -->
+	<div class="tab-content">
+		<div class="tab-pane active" id="event" role="tabpanel">
+			<div class="container">
+				<div class="row justify-content-md-center m-3">
+					<div class="col-8">
 						<form  action="metadata.php" enctype="multipart/form-data" method="post">
 
-							<input type="hidden" name="category" value="events"/>
-							<div class="form-group">
-								<input class="form-control-file" id="fileEvent" name="file[]" type="file"  multiple="multiple" />
-								<!-- onchange="preview_images('fileEvent');" -->
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Title of the event" style='max-height: 20px' src='question.png'/><label for="bampfatitle">&nbsp;&nbsp;Title</label>
-								<input class="form-control" type="text" name="bampfatitle"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Year of the event" style='max-height: 20px' src='question.png'/><label for="bampfayear">&nbsp;&nbsp;Year</label>
-								<input class="form-control" type="text" name="bampfayear"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Date of the event, formatted YYYY-MM-DD" style='max-height: 20px' src='question.png'/><label for="eventfulldate">&nbsp;&nbsp;Full date of event</label>
-								<input class="form-control" type="text" name="eventfulldate"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="If the event is part of a series (Architecture of Life Lunchtime Talks; Art Lab workshops; Art Lab open session; Full; etc.) enter it here as it appears in the program guide" style='max-height: 20px' src='question.png'/><label for="eventseries">&nbsp;&nbsp;Event Series</label>
-								<input class="form-control" type="text" name="eventseries"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="If the event is related to a gallery exhibition, enter the name of the exhibition here as it appears in the program guide" style='max-height: 20px' src='question.png'/><label for="eventrelatedex">&nbsp;&nbsp;Related Exhibition</label>
-								<input class="form-control" type="text" name="eventrelatedex"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="If the location of the event is noteworthy, especially if it is offsite, enter it here (Ciampi Building; Powerhouse Gallery; etc.DD" style='max-height: 20px' src='question.png'/><label for="eventlocation">&nbsp;&nbsp;Location</label>
-								<input class="form-control" type="text" name="eventlocation"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Text description of the event" style='max-height: 20px' src='question.png'/><label for="eventdescription">&nbsp;&nbsp;Description</label>
-								<input class="form-control" type="text" name="eventdescription" onkeyup="adjust_textarea(this)"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Pick from the dropdown" style='max-height: 20px' src='question.png'/><label for="eventtype">&nbsp;&nbsp;Event type</label>
-								<select name="eventtype" class="form-control">
-									<option value="">Select an event type</option>
-									<option value="film">Film</option>
-									<option value="lecture">Lecture</option>
-									<option value="artist talk">Artist Talk</option>
-									<option value="children">Children</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="People in image, if significant" style='max-height: 20px' src='question.png'/><label for="eventpeople">&nbsp;&nbsp;People pictured</label>
-								<input type="text" class="form-control" name="eventpeople"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Topical subject keywords if considered important" style='max-height: 20px' src='question.png'/><label for="eventsubject">&nbsp;&nbsp;Topical subject</label>
-								<input type="text" class="form-control" name="eventsubject"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Name of the event organizer, if significant" style='max-height: 20px' src='question.png'/><label for="eventorganizer">&nbsp;&nbsp;Event organizer</label>
-								<input type="text" class="form-control" name="eventorganizer"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Image source if the image came from outside BAMPFA and should be noted (for example, a headshot courtesy of a book publisher; an image from a modeling agency; etc.)" style='max-height: 20px' src='question.png'/><label for="eventimagesource">&nbsp;&nbsp;Image source</label>
-								<input type="text" class="form-control" name="eventimagesource"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Copyright statement for image, if known" style='max-height: 20px' src='question.png'/><label for="eventimagecopyright">&nbsp;&nbsp;Photo copyright</label>
-								<input type="text" class="form-control" name="eventimagecopyright"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Name of photographer" style='max-height: 20px' src='question.png'/><label for="eventcredit">&nbsp;&nbsp;Photo credit</label>
-								<input type="text" class="form-control" name="eventcredit"/>
-							</div>
-							<div class="form-group" id="eventtagarray">
-								<img data-toggle="tooltip" title="Relevant Piction tags" style='max-height: 20px' src='question.png'/><label for="eventtagarray">&nbsp;&nbsp;Tag(s)</label>
-								<!-- <div id="eventtagarray"> -->
-								<input type="text" class="form-control" name="eventtagarray[]"/>
-								<!-- </div> -->
-							</div>
-							<div class="form-group">    
-								<label  id="addatag"></label>
-								<input type="button" value="Add a tag" onClick="addTag('eventtagarray','event');"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Copy/paste any caption to be used in Program Guide/Website" style='max-height: 20px' src='question.png'/><label for="eventbampfacaption">&nbsp;&nbsp;BAMPFA caption</label>
-								<input type="text" class="form-control" name="eventbampfacaption"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Restrictions on use of the image" style='max-height: 20px' src='question.png'/><label for="eventrestrictions">&nbsp;&nbsp;Restrictions</label>
-								<input type="text" class="form-control" name="eventrestrictions"/>
-							</div>
-							<div class="form-group">
-								<img data-toggle="tooltip" title="Name of BAMPFA staff who uploaded the image to Piction" style='max-height: 20px' src='question.png'/><label for="eventuploader">&nbsp;&nbsp;Uploader</label>
-								<input type="text" class="form-control" name="eventuploader"/>
-							</div>
-							<div class="form-group">
-								<input type="submit" value="Submit" name="submit" />
-							</div>
+						<input type="hidden" name="category" value="events"/>
+						<h4 class="my-4">Step 1: Select files</h4>
+						<div class="form-group">
+							<input class="form-control-file" id="fileEvent" name="file[]" type="file"  multiple="multiple" />
+							<small id="fileEventHelp" class="form-text text-muted">Please make sure that you have renamed all files following the filenaming conventions listed <a href="https://docs.google.com/document/d/1TgSU7RLQrvRud6O1BdwI5NbtBtP7CN5v1cPEbxSdgNs/edit">here</a>.</small>
 
-						</form>
-					</div>
-				</div>
-			</div>
-
-			<div class="card">
-				<div class="card-header" role="tab" id="headingFilm">
-					<h5 class="mb-0">
-						<a class="collapsed" data-toggle="collapse" href="#collapseFilm" aria-expanded="false" aria-controls="collapseFilm">
-							Enter information for FILM images
-						</a>
-					</h5>
-				</div>
-
-				<div id="collapseFilm" class="collapse" role="tabpanel" aria-labelledby="headingFilm" data-parent="#accordion">
-					<div class="card-body">
-						<form  action="metadata.php" enctype="multipart/form-data" method="post">
-							<input type="hidden" name="category" value="film"/>
-							<div class="form-group">
-								<input class="form-control-file" id="fileFilm" name="file[]" type="file" onchange="preview_images('fileFilm');" multiple="multiple"/>
-							</div>
-							<div class="form-group">
-								<label for="bampfatitle">Title</label>
-								<input class="form-control" type="text" name="bampfatitle"/>
-							</div>
-							<div class="form-group">
-								<label for="bampfaartist">Artist/Filmmaker</label>
-								<input class="form-control" type="text" name="bampfaartist"/>
-							</div>
-							<div class="form-group">
-								<label for="bampfayear">Year</label>
-								<input class="form-control" type="text" name="bampfayear"/>
-							</div>
-							<div class="form-group">
-								<label for="filmdescription">Description</label>
-								<input class="form-control" type="text" name="filmdescription"/>
-							</div>
-							<div class="form-group">
-								<label for="filmcontrib">Contributor/Image Source</label>
-								<input class="form-control" type="text" name="filmcontrib"/>
-							</div>
-							<div class="form-group">
-								<label for="filmrights">Rights statement</label>
-								<input class="form-control" type="text" name="filmrights"/>
-							</div>
-							<div class="form-group">
-								<label for="filmseries">Title of PFA Series</label>
-								<input class="form-control" type="text" name="filmseries"/>
-							</div>
-							<div class="form-group">
-								<label for="filmtype">Film still type</label>
-								<select name="filmtype" class="form-control">
-									<option value="">Select an film still type</option>
-									<option value="Production still">Production still</option>
-									<option value="Portrait">Portrait</option>
-									<option value="Director/actor shot">Director/actor shot</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="filmpeople">People pictured</label>
-								<input type="text" class="form-control" name="filmpeople"/>
-							</div>
-							<div class="form-group" id="filmtagarray">
-								<label for="filmtagarray">Tag(s)</label>
-								<input type="text" class="form-control" name="filmtagarray[]"/>
-							</div>
-							<div class="form-group">   
-								<label  id="addatag"></label>
-								<input type="button" value="Add a tag" onClick="addTag('filmtagarray','film');"/>
-							</div>
-							<div class="form-group">
-								<label for="filmbampfacaption">BAMPFA caption</label>
-								<input type="text" class="form-control" name="filmbampfacaption"/>
-							</div>
-							<div class="form-group">
-								<label for="filmrestrictions">Restrictions</label>
-								<input type="text" class="form-control" name="filmrestrictions"/>
-							</div>
-							<div class="form-group">
-								<label for="filmuploader">Uploader</label>
-								<input type="text" class="form-control" name="filmuploader"/>
-							</div>
-							<div class="form-group">
-								<input type="submit" value="Submit" name="submit"/>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-
-			<div class="card">
-					<div class="card-header" role="tab" id="headingExh">
-						<h5 class="mb-0">
-							<a class="collapsed" data-toggle="collapse" href="#collapseExh" aria-expanded="false" aria-controls="collapseExh">
-								Enter information for EXHIBITION images
-							</a>
-						</h5>
-					</div>
-					<div id="collapseExh" class="collapse" role="tabpanel" aria-labelledby="headingExh" data-parent="#accordion">
-						<div class="card-body">
-							<form  action="metadata.php" enctype="multipart/form-data" method="post">
-
-								<input type="hidden" name="category" value="exhibitions"/>
-								<div class="form-group">
-									<input class="form-control-file" id="fileExh" name="file[]" type="file" onchange="preview_images('fileExh');" multiple="multiple"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="Title of the Exhibition as it appears in the Program Guide." style='max-height: 20px' src='question.png'/><label for="bampfayear">&nbsp;&nbsp;Year</label><label for="bampfatitle">Title</label>
-									<input class="form-control" type="text" name="bampfatitle"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="If there is a single artist, enter the name here. Multiple artists can go in Description below" style='max-height: 20px' src='question.png'/><label for="bampfaartist">Artist/Filmmaker</label>
-									<input class="form-control" type="text" name="bampfaartist"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="Year the exhibition opened to the public" style='max-height: 20px' src='question.png'/><label for="bampfayear">Year of exhibition</label>
-									<input class="form-control" type="text" name="bampfayear"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="Full date range of the exhibition, formatted 'YYYY-MM-DD - YYYY-MM-DD'" style='max-height: 20px' src='question.png'/><label for="exhfulldate">Full dates of exhibition</label>
-									<input class="form-control" type="text" name="exhfulldate"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="" style='max-height: 20px' src='question.png'/><label for="exhartworktitle">Title of single artwork</label>
-									<input class="form-control" type="text" name="exhartworktitle"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="" style='max-height: 20px' src='question.png'/><label for="exhmedium">Medium of artwork</label>
-									<select name="exhmedium" class="form-control">
-										<option value="">Select a medium</option>
-										<option value="Video">Video</option>
-										<option value="Painting">Painting</option>
-										<option value="Stuff">Felt and Fat</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="" style='max-height: 20px' src='question.png'/><label for="exhcreditline">Artwork credit line</label>
-									<input class="form-control" type="text" name="exhcreditline"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="If there is a description of the image or the exhibition that would be useful to retain, enter it here. ALSO, if there are multiple artists’ works in the image, enter their names and titles of works (if necessary) here." style='max-height: 20px' src='question.png'/><label for="exhdescription">Description</label>
-									<input class="form-control" type="text" name="exhdescription"/>
-								</div>
-								<div class="form-group">
-									<!-- @FIXME I THINK THIS IS MAPPED TO DC.RIGHTS IN PICTION AND NEEDS TO BE COPIED TO A NEW FIELD UNDER GALLERY EXHIBITIONS -->
-									<img data-toggle="tooltip" title="Rights statement for the image (not the artwork)" style='max-height: 20px' src='question.png'/><label for="exhrights">Rights statement</label>
-									<input class="form-control" type="text" name="exhrights"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="Name(s) of the curator(s) for the exhibition" style='max-height: 20px' src='question.png'/><label for="exhcurator">Curator(s)</label>
-									<input class="form-control" type="text" name="exhcurator"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="Pick from dropdown, if relevant" style='max-height: 20px' src='question.png'/><label for="exhimagetype">Image type</label>
-									<select name="filmtype" class="form-control">
-										<option value="">Select a image type</option>
-										<option value="Installation Image">Installation shot</option>
-										<option value="Portrait">Portrait</option>
-									</select>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="Location of the exhibition, if significant (Gallery 2, Crane Forum, etc.)" style='max-height: 20px' src='question.png'/><label for="exhlocation">Location of exhibition</label>
-									<input type="text" class="form-control" name="exhlocation"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="Source of the image, if known (From the artist; Image courtesy SFMoMA; etc.)" style='max-height: 20px' src='question.png'/><label for="exhsource">Image source</label>
-									<input type="text" class="form-control" name="exhsource"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="Copyright credit for the image (not the artwork)" style='max-height: 20px' src='question.png'/><label for="exhcopyright">Photo copyright</label>
-									<input type="text" class="form-control" name="exhcopyright"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="Name of photographer (not the artist), if known" style='max-height: 20px' src='question.png'/><label for="exhphotocredit">Photo credit</label>
-									<input type="text" class="form-control" name="exhphotocredit"/>
-								</div>
-								<div class="form-group" id="exhtagarray">
-									<img data-toggle="tooltip" title="Add keywords. ONE PER LINE!" style='max-height: 20px' src='question.png'/><label for="exhtagarray">Tag(s)</label>
-									<input type="text" class="form-control" name="exhtagarray[]"/>
-								</div>
-								<div class="form-group">    
-									<label  id="addatag"></label>
-									<input type="button" value="Add a tag" onClick="addTag('exhtagarray','exh');"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="Copy/paste any caption to be used in Program Guide/Website" style='max-height: 20px' src='question.png'/><label for="exhbampfacaption">BAMPFA caption</label>
-									<input type="text" class="form-control" name="exhbampfacaption"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="Restrictions on use of the image, if known" style='max-height: 20px' src='question.png'/><label for="exhrestrictions">Restrictions</label>
-									<input type="text" class="form-control" name="exhrestrictions"/>
-								</div>
-								<div class="form-group">
-									<img data-toggle="tooltip" title="Name of BAMPFA staff who uploaded the image to Piction" style='max-height: 20px' src='question.png'/><label for="exhuploader">Uploader</label>
-									<input type="text" class="form-control" name="exhuploader"/>
-								</div>
-								<div class="form-group">
-									<input type="submit" value="Submit" name="submit"/>
-								</div>
-
-							</form>
-
+							<!-- onchange="preview_images('fileEvent');" -->
 						</div>
+						<h4 class="my-4">Step 2: Add main details</h4>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Title of the event" style='max-height: 20px' src='question.png'/>
+							<label for="bampfatitle"> Title</label>
+							<input class="form-control" type="text" name="bampfatitle"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Year of the event" style='max-height: 20px' src='question.png'/>
+							<label for="bampfayear"> Year</label>
+							<input class="form-control" type="text" name="bampfayear"/>
+						</div>
+						<h4 class="my-4">Step 3: Add additional details</h4>
+							<p>Please add any additional details that you have about these images.</p>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Date of the event, formatted YYYY-MM-DD" style='max-height: 20px' src='question.png'/>
+							<label for="eventfulldate"> Full date of event</label>
+							<input class="form-control" type="text" id="eventfulldate"/>
+							<small id="eventfulldateHelp" class="form-text text-muted">YYYY-MM-DD</small>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="If the event is part of a series (Architecture of Life Lunchtime Talks; Art Lab workshops; Art Lab open session; Full; etc.) enter it here as it appears in the program guide" style='max-height: 20px' src='question.png'/>
+							<label for="eventseries"> Event Series</label>
+							<input class="form-control" type="text" id="eventseries"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="If the event is related to a gallery exhibition, enter the name of the exhibition here as it appears in the program guide" style='max-height: 20px' src='question.png'/>
+							<label for="eventrelatedex"> Related Exhibition</label>
+							<input class="form-control" type="text" id="eventrelatedex"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="If the location of the event is noteworthy, especially if it is offsite, enter it here (Ciampi Building; Powerhouse Gallery; etc.DD" style='max-height: 20px' src='question.png'/>
+							<label for="eventlocation"> Location</label>
+							<input class="form-control" type="text" id="eventlocation"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Text description of the event" style='max-height: 20px' src='question.png'/>
+							<label for="eventdescription"> Description</label>
+							<input class="form-control" type="text" id="eventdescription" onkeyup="adjust_textarea(this)"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Pick from the dropdown" style='max-height: 20px' src='question.png'/>
+							<label for="eventtype"> Event type</label>
+							<select id="eventtype" class="form-control">
+								<option value="">Select an event type</option>
+								<option value="film">Film</option>
+								<option value="lecture">Lecture</option>
+								<option value="artist talk">Artist Talk</option>
+								<option value="children">Children</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="People in image, if significant" style='max-height: 20px' src='question.png'/>
+							<label for="eventpeople"> People pictured</label>
+							<input type="text" class="form-control" id="eventpeople"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Topical subject keywords if considered important" style='max-height: 20px' src='question.png'/>
+							<label for="eventsubject"> Topical subject</label>
+							<input type="text" class="form-control" id="eventsubject"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Name of the event organizer, if significant" style='max-height: 20px' src='question.png'/>
+							<label for="eventorganizer"> Event organizer</label>
+							<input type="text" class="form-control" id="eventorganizer"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Image source if the image came from outside BAMPFA and should be noted (for example, a headshot courtesy of a book publisher; an image from a modeling agency; etc.)" style='max-height: 20px' src='question.png'/>
+							<label for="eventimagesource"> Image source</label>
+							<input type="text" class="form-control" id="eventimagesource"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Copyright statement for image, if known" style='max-height: 20px' src='question.png'/>
+							<label for="eventimagecopyright"> Photo copyright</label>
+							<input type="text" class="form-control" id="eventimagecopyright"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Name of photographer" style='max-height: 20px' src='question.png'/>
+							<label for="eventcredit"> Photo credit</label>
+							<input type="text" class="form-control" id="eventcredit"/>
+						</div>
+						<div class="form-group" id="eventtagarray">
+							<img data-toggle="tooltip" title="Relevant Piction tags" style='max-height: 20px' src='question.png'/>
+							<label for="eventtagarray"> Tag(s)</label>
+							<!-- <div id="eventtagarray"> -->
+							<input type="text" class="form-control" name="eventtagarray[]"/>
+							<!-- </div> -->
+						</div>
+						<div class="form-group">
+							<label  id="addatag"></label>
+							<input type="button" value="Add a tag" onClick="addTag('eventtagarray','event');"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Copy/paste any caption to be used in Program Guide/Website" style='max-height: 20px' src='question.png'/>
+							<label for="eventbampfacaption"> BAMPFA caption</label>
+							<input type="text" class="form-control" id="eventbampfacaption"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Restrictions on use of the image" style='max-height: 20px' src='question.png'/>
+							<label for="eventrestrictions"> Restrictions</label>
+							<input type="text" class="form-control" id="eventrestrictions"/>
+						</div>
+						<div class="form-group">
+							<img data-toggle="tooltip" title="Name of BAMPFA staff who uploaded the image to Piction" style='max-height: 20px' src='question.png'/>
+							<label for="eventuploader"> Uploader</label>
+							<input type="text" class="form-control" id="eventuploader"/>
+						</div>
+						<div class="form-group">
+							<input type="submit" value="Submit" name="submit" />
+						</div>
+
+					</form>
 					</div>
+				</div>
 			</div>
-
 		</div>
+		<div class="tab-pane" id="film" role="tabpanel">
+			<div class="container">
+				<div class="row justify-content-md-center mt-5">
+					<div class="col-8">
+						<form  action="metadata.php" enctype="multipart/form-data" method="post">
+				<input type="hidden" name="category" value="film"/>
+				<div class="form-group">
+					<input class="form-control-file" id="fileFilm" name="file[]" type="file" onchange="preview_images('fileFilm');" multiple="multiple"/>
+				</div>
+				<div class="form-group">
+					<label for="bampfatitle"> Title</label>
+					<input class="form-control" type="text" name="bampfatitle"/>
+				</div>
+				<div class="form-group">
+					<label for="bampfaartist"> Artist/Filmmaker</label>
+					<input class="form-control" type="text" name="bampfaartist"/>
+				</div>
+				<div class="form-group">
+					<label for="bampfayear"> Year</label>
+					<input class="form-control" type="text" name="bampfayear"/>
+				</div>
+				<div class="form-group">
+					<label for="filmdescription"> Description</label>
+					<input class="form-control" type="text" id="filmdescription"/>
+				</div>
+				<div class="form-group">
+					<label for="filmcontrib"> Contributor/Image Source</label>
+					<input class="form-control" type="text" id="filmcontrib"/>
+				</div>
+				<div class="form-group">
+					<label for="filmrights"> Rights statement</label>
+					<input class="form-control" type="text" id="filmrights"/>
+				</div>
+				<div class="form-group">
+					<label for="filmseries"> Title of PFA Series</label>
+					<input class="form-control" type="text" id="filmseries"/>
+				</div>
+				<div class="form-group">
+					<label for="filmtype"> Film still type</label>
+					<select id="filmtype" class="form-control">
+						<option value="">Select an film still type</option>
+						<option value="Production still">Production still</option>
+						<option value="Portrait">Portrait</option>
+						<option value="Director/actor shot">Director/actor shot</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="filmpeople">People pictured</label>
+					<input type="text" class="form-control" id="filmpeople"/>
+				</div>
+				<div class="form-group" id="filmtagarray">
+					<label for="filmtagarray">Tag(s)</label>
+					<input type="text" class="form-control" name="filmtagarray[]"/>
+				</div>
+				<div class="form-group">
+					<label  id="addatag"></label>
+					<input type="button" value="Add a tag" onClick="addTag('filmtagarray','film');"/>
+				</div>
+				<div class="form-group">
+					<label for="filmbampfacaption">BAMPFA caption</label>
+					<input type="text" class="form-control" id="filmbampfacaption"/>
+				</div>
+				<div class="form-group">
+					<label for="filmrestrictions">Restrictions</label>
+					<input type="text" class="form-control" id="filmrestrictions"/>
+				</div>
+				<div class="form-group">
+					<label for="filmuploader">Uploader</label>
+					<input type="text" class="form-control" id="filmuploader"/>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="Submit" name="submit"/>
+				</div>
+			</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane" id="exhibition" role="tabpanel">
+			<div class="container">
+				<div class="row justify-content-md-center mt-5">
+					<div class="col-8">
+						<form  action="metadata.php" enctype="multipart/form-data" method="post">
 
-		<div class="row" id="image_preview"></div>
+				<input type="hidden" name="category" value="exhibitions"/>
+				<div class="form-group">
+					<input class="form-control-file" id="fileExh" name="file[]" type="file" onchange="preview_images('fileExh');" multiple="multiple"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="Title of the Exhibition as it appears in the Program Guide." style='max-height: 20px' src='question.png'/>
+					<label for="bampfatitle"> Title</label>
+					<input class="form-control" type="text" id="bampfatitle"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="If there is a single artist, enter the name here. Multiple artists can go in Description below" style='max-height: 20px' src='question.png'/>
+					<label for="bampfaartist"> Artist/Filmmaker</label>
+					<input class="form-control" type="text" id="bampfaartist"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="Year the exhibition opened to the public" style='max-height: 20px' src='question.png'/>
+					<label for="bampfayear"> Year of exhibition</label>
+					<input class="form-control" type="text" id="bampfayear"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="Full date range of the exhibition, formatted 'YYYY-MM-DD - YYYY-MM-DD'" style='max-height: 20px' src='question.png'/>
+					<label for="exhfulldate"> Full dates of exhibition</label>
+					<input class="form-control" type="text" id="exhfulldate"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="" style='max-height: 20px' src='question.png'/>
+					<label for="exhartworktitle"> Title of single artwork</label>
+					<input class="form-control" type="text" id="exhartworktitle"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="" style='max-height: 20px' src='question.png'/>
+					<label for="exhmedium"> Medium of artwork</label>
+					<select id="exhmedium" class="form-control">
+						<option value="">Select a medium</option>
+						<option value="Video">Video</option>
+						<option value="Painting">Painting</option>
+						<option value="Stuff">Felt and Fat</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="" style='max-height: 20px' src='question.png'/>
+					<label for="exhcreditline"> Artwork credit line</label>
+					<input class="form-control" type="text" id="exhcreditline"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="If there is a description of the image or the exhibition that would be useful to retain, enter it here. ALSO, if there are multiple artists’ works in the image, enter their names and titles of works (if necessary) here." style='max-height: 20px' src='question.png'/>
+					<label for="exhdescription">Description</label>
+					<input class="form-control" type="text" id="exhdescription"/>
+				</div>
+				<div class="form-group">
+					<!-- @FIXME I THINK THIS IS MAPPED TO DC.RIGHTS IN PICTION AND NEEDS TO BE COPIED TO A NEW FIELD UNDER GALLERY EXHIBITIONS -->
+					<img data-toggle="tooltip" title="Rights statement for the image (not the artwork)" style='max-height: 20px' src='question.png'/>
+					<label for="exhrights">Rights statement</label>
+					<input class="form-control" type="text" id="exhrights"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="Name(s) of the curator(s) for the exhibition" style='max-height: 20px' src='question.png'/>
+					<label for="exhcurator">Curator(s)</label>
+					<input class="form-control" type="text" id="exhcurator"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="Pick from dropdown, if relevant" style='max-height: 20px' src='question.png'/>
+					<label for="exhimagetype">Image type</label>
+					<select id="exhimagetype" class="form-control">
+						<option value="">Select a image type</option>
+						<option value="Installation Image">Installation shot</option>
+						<option value="Portrait">Portrait</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="Location of the exhibition, if significant (Gallery 2, Crane Forum, etc.)" style='max-height: 20px' src='question.png'/>
+					<label for="exhlocation">Location of exhibition</label>
+					<input type="text" class="form-control" id="exhlocation"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="Source of the image, if known (From the artist; Image courtesy SFMoMA; etc.)" style='max-height: 20px' src='question.png'/>
+					<label for="exhsource">Image source</label>
+					<input type="text" class="form-control" id="exhsource"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="Copyright credit for the image (not the artwork)" style='max-height: 20px' src='question.png'/>
+					<label for="exhcopyright">Photo copyright</label>
+					<input type="text" class="form-control" id="exhcopyright"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="Name of photographer (not the artist), if known" style='max-height: 20px' src='question.png'/>
+					<label for="exhphotocredit">Photo credit</label>
+					<input type="text" class="form-control" id="exhphotocredit"/>
+				</div>
+				<div class="form-group" id="exhtagarray">
+					<img data-toggle="tooltip" title="Add keywords. ONE PER LINE!" style='max-height: 20px' src='question.png'/>
+					<label for="exhtagarray">Tag(s)</label>
+					<input type="text" class="form-control" name="exhtagarray[]"/>
+				</div>
+				<div class="form-group">
+					<label  id="addatag"></label>
+					<input type="button" value="Add a tag" onClick="addTag('exhtagarray','exh');"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="Copy/paste any caption to be used in Program Guide/Website" style='max-height: 20px' src='question.png'/>
+					<label for="exhbampfacaption">BAMPFA caption</label>
+					<input type="text" class="form-control" id="exhbampfacaption"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="Restrictions on use of the image, if known" style='max-height: 20px' src='question.png'/>
+					<label for="exhrestrictions">Restrictions</label>
+					<input type="text" class="form-control" id="exhrestrictions"/>
+				</div>
+				<div class="form-group">
+					<img data-toggle="tooltip" title="Name of BAMPFA staff who uploaded the image to Piction" style='max-height: 20px' src='question.png'/
+					><label for="exhuploader">Uploader</label>
+					<input type="text" class="form-control" id="exhuploader"/>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="Submit" name="submit"/>
+				</div>
 
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<!--<script src="js/jquery.js"></script>-->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-	</body>
+			</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-		
+
+	<div class="row" id="image_preview"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<!--<script src="js/jquery.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+
+
 
 
 </html> 
