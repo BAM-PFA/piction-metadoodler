@@ -8,6 +8,7 @@
 *.TIFF
 *.png
 !question.png
+!badfile.jpg
 201*.csv
 .htaccess
 .idea
