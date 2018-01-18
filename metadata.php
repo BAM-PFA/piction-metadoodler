@@ -16,7 +16,6 @@ foreach($_FILES['file']['tmp_name'] as $key => $tmp_name ){
     $file_tmp = $_FILES['file']['tmp_name'][$key];
     $basename = basename($file_name);
     
-    $is_img = False;
     $file_mime = mime_content_type($file_tmp);
     $good_mimes_bro = array('image/tiff','image/jpeg','image/png','image/gif');
     if (in_array($file_mime, $good_mimes_bro)){
@@ -47,7 +46,7 @@ foreach($_FILES['file']['tmp_name'] as $key => $tmp_name ){
 
         $METADATA .= "$filepath,$bampfatitle,$bampfaartist,$bampfayear,$eventfulldate,$eventseries,$eventrelatedex,$eventlocation,$eventdescription,$eventtype,$eventpeople,$eventsubject,$eventorganizer,$eventimagesource,$eventimagecopyright,$eventphotocredit,$eventtags,$eventbampfacaption,$eventrestrictions,$eventuploader,$filmbampfacaption,$filmcontrib,$filmuploader,$filmdescription,$filmseries,$filmrights,$filmpeople,$filmtype,$filmrestrictions,$filmtags,$exhcreditline,$exhmedium,$exhcaption,$exhcurator,$exhsource,$exhyearofexh,$exhuploader,$exhdescription,$exhnameofexh,$exhcopyright,$exhartworktitle,$exhimagetype,$exhlocation,$exhfulldates,$exhphotocredit,$exhrestrictions,$exhtags\n";
         $METADATA_VALUES .= "$filepath,$bampfatitle,$bampfaartist,$bampfayear,$eventfulldate,$eventseries,$eventrelatedex,$eventlocation,$eventdescription,$eventtype,$eventpeople,$eventsubject,$eventorganizer,$eventimagesource,$eventimagecopyright,$eventphotocredit,$eventtags,$eventbampfacaption,$eventrestrictions,$eventuploader,$filmbampfacaption,$filmcontrib,$filmuploader,$filmdescription,$filmseries,$filmrights,$filmpeople,$filmtype,$filmrestrictions,$filmtags,$exhcreditline,$exhmedium,$exhcaption,$exhcurator,$exhsource,$exhyearofexh,$exhuploader,$exhdescription,$exhnameofexh,$exhcopyright,$exhartworktitle,$exhimagetype,$exhlocation,$exhfulldates,$exhphotocredit,$exhrestrictions,$exhtags\n";
-        
+        echo $METADATA_VALUES;
         //  ------- FTP THE FILE ---------
         ftpFile($file_tmp,$ftpDir,$basename);
 
