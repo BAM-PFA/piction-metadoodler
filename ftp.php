@@ -12,7 +12,7 @@ function ftpFile($source,$ftpDir,$basename){
 	$conn_id = ftp_connect($pictionServer);
 	// echo $conn_id;
 	// read credentials from a file outside the documentroot
-	$ftp_credential_array = file('/var/www/ftp/ftp.txt',FILE_IGNORE_NEW_LINES);
+	$ftp_credential_array = file('../../ftp/ftp.txt',FILE_IGNORE_NEW_LINES);
 	
 	$username = $ftp_credential_array[0];
 	$password = $ftp_credential_array[1];
