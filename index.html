@@ -54,7 +54,7 @@
 					<div class="col-8">
 						<form  action="metadata.php" enctype="multipart/form-data" method="post">
 
-						<input type="hidden" name="category" value="events"/>
+						<input type="hidden" name="category" value="events"/> <!-- feed through the category name for csv creation and ftp upload-->
 						<h4 class="my-4">Step 1: Select files</h4>
 						<div class="form-group">
 							<input class="form-control-file" id="fileEvent" name="file[]" type="file" onchange="preview_images('fileEvent');" multiple="multiple" />
@@ -184,7 +184,7 @@
 				<div class="row justify-content-md-center m-3">
 					<div class="col-8">
 						<form  action="metadata.php" enctype="multipart/form-data" method="post">
-							<input type="hidden" name="category" value="film"/>
+							<input type="hidden" name="category" value="film"/> <!-- feed through the category name for csv creation and ftp upload-->
 							<h4 class="my-4">Step 1: Select files</h4>
 							<div class="form-group">
 								<input class="form-control-file" id="fileFilm" name="file[]" type="file" onchange="preview_images('fileFilm');" multiple="multiple"/>
@@ -283,7 +283,7 @@
 					<div class="col-8">
 						<form  action="metadata.php" enctype="multipart/form-data" method="post">
 
-							<input type="hidden" name="category" value="exhibitions"/>
+							<input type="hidden" name="category" value="exhibitions"/> <!-- feed through the category name for csv creation and ftp upload-->
 							<h4 class="my-4">Step 1: Select files</h4>
 							<div class="form-group">
 								<input class="form-control-file" id="fileExh" name="file[]" type="file" onchange="preview_images('fileExh');" multiple="multiple"/>
@@ -309,8 +309,8 @@
 							<p>Please add any additional details that you have about these images.</p>
 							<div class="form-group">
 								<img data-toggle="tooltip" title="Full date range of the exhibition, formatted 'YYYY-MM-DD - YYYY-MM-DD'" style='max-height: 20px' src='question.png'/>
-								<label for="exhfulldate"> Full dates of exhibition</label>
-								<input class="form-control" type="text" id="exhfulldate" name="exhfulldate"/>
+								<label for="exhfulldates"> Full dates of exhibition</label>
+								<input class="form-control" type="text" id="exhfulldates" name="exhfulldates"/>
 							</div>
 							<div class="form-group">
 								<img data-toggle="tooltip" title="Title of single artwork; multiple titles if necessary can go in Description." style='max-height: 20px' src='question.png'/>
@@ -362,7 +362,7 @@
 							<div class="form-group">
 								<img data-toggle="tooltip" title="Name(s) of the curator(s) for the exhibition" style='max-height: 20px' src='question.png'/>
 								<label for="exhcurator">Curator(s)</label>
-								<input class="form-control" type="text" id="exhcurator" name=="exhcurator"/>
+								<input class="form-control" type="text" id="exhcurator" name="exhcurator"/>
 							</div>
 							<div class="form-group">
 								<img data-toggle="tooltip" title="Pick from dropdown, if relevant" style='max-height: 20px' src='question.png'/>
@@ -413,7 +413,7 @@
 							<div class="form-group">
 								<img data-toggle="tooltip" title="Copy/paste any caption to be used in Program Guide/Website" style='max-height: 20px' src='question.png'/>
 								<label for="exhbampfacaption">BAMPFA caption</label>
-								<input type="text" class="form-control" id="exhbampfacaption" name=="exhbampfacaption"/>
+								<input type="text" class="form-control" id="exhbampfacaption" name="exhbampfacaption"/>
 							</div>
 							<div class="form-group">
 								<img data-toggle="tooltip" title="Restrictions on use of the image, if known" style='max-height: 20px' src='question.png'/>

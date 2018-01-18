@@ -1,8 +1,8 @@
 <?php
 function ftpFile($source,$ftpDir,$basename){
-	ini_set('display_errors', 1);
-	ini_set('display_startup_errors', 1);
-	error_reporting(E_ALL|E_STRICT);
+	//ini_set('display_errors', 1);
+	//ini_set('display_startup_errors', 1);
+	//error_reporting(E_ALL|E_STRICT);
 	
 	$remoteFile = "$ftpDir$basename";
         // echo "<br>" . $source . "...." . $ftpDir . "...." . $basename . "...." . $remoteFile . "<br>";
@@ -10,7 +10,6 @@ function ftpFile($source,$ftpDir,$basename){
 	$pictionServer = 'ucb1.piction.com';
 
 	$conn_id = ftp_connect($pictionServer);
-	// echo $conn_id;
 	// read credentials from a file outside the documentroot
 	$ftp_credential_array = file('../../ftp/ftp.txt',FILE_IGNORE_NEW_LINES);
 	
