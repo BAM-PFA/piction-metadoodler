@@ -1,11 +1,11 @@
 <?php
 function ftpFile($source,$ftpDir,$basename){
-	// ini_set('display_errors', 1);
-	// ini_set('display_startup_errors', 1);
-	// error_reporting(E_ALL|E_STRICT);
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL|E_STRICT);
 	
 	$remoteFile = "$ftpDir$basename";
-	// echo "<br>" . $source . "...." . $ftpDir . "...." . $basename . "...." . $remoteFile . "<br>";
+        // echo "<br>" . $source . "...." . $ftpDir . "...." . $basename . "...." . $remoteFile . "<br>";
 	
 	$pictionServer = 'ucb1.piction.com';
 

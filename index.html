@@ -31,7 +31,8 @@
 	<div class="jumbotron">
 		<h1 class="display-5">Welcome</h1>
 		<p class="lead">Piction Metadoodler is a tool to help you upload batches of images to Piction.</p>
-		<p>Start by seleting the type of images that you are uploading.</p>
+		<p>Start by selecting the type of image that you are uploading (Event images, Film stills, or Exhibition images).</p>
+		<p>Then choose your images to upload and enter metadata that will apply to the <b>entire</b> batch.</p>
 	</div>
 
 	<ul class="nav nav-tabs" role="tablist">
@@ -56,7 +57,7 @@
 						<input type="hidden" name="category" value="events"/>
 						<h4 class="my-4">Step 1: Select files</h4>
 						<div class="form-group">
-							<input class="form-control-file" id="fileEvent" name="file[]" type="file"  multiple="multiple" />
+							<input class="form-control-file" id="fileEvent" name="file[]" type="file" onchange="preview_images('fileEvent');" multiple="multiple" />
 							<small id="fileEventHelp" class="form-text text-muted">Please make sure that you have renamed all files following the filenaming conventions listed <a href="https://docs.google.com/document/d/1TgSU7RLQrvRud6O1BdwI5NbtBtP7CN5v1cPEbxSdgNs/edit">here</a>.</small>
 
 							<!-- onchange="preview_images('fileEvent');" -->
@@ -315,6 +316,7 @@
 								<img data-toggle="tooltip" title="Title of single artwork; multiple titles if necessary can go in Description." style='max-height: 20px' src='question.png'/>
 								<label for="exhartworktitle"> Title of single artwork</label>
 								<input class="form-control" type="text" id="exhartworktitle"/>
+								<small id="exhTitleHelp" class="form-text text-muted">(Only enter if batch is all of   single work)</small>
 							</div>
 							<div class="form-group">
 								<img data-toggle="tooltip" title=" Pick from the Art Collection 'Classification' list" style='max-height: 20px' src='question.png'/>
@@ -344,7 +346,7 @@
 									<option value="Video">Video</option>
 									<option value="Work on paper">Work on paper</option>
 								</select>
-								<small id="exhMediumHelp" class="form-text text-muted">Medium of a single work</small>
+								<small id="exhMediumHelp" class="form-text text-muted">(Only enter if batch is all of a single work)</small>
 							</div>
 							<div class="form-group">
 								<img data-toggle="tooltip" title="Credit line for the *artwork* (ex: 'Courtesy of the artist','Courtesy of National Gallery')" style='max-height: 20px' src='question.png'/>
