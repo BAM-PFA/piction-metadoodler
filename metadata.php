@@ -4,11 +4,10 @@ echo "<html><body>";
 include 'ftp.php';
 
 // --- INITIALIZE METADATA.CSV COLUMNS
-// make two versions: one with the column headers (to write a new file) ...
-$METADATA = "FILENAME,BAMPFA.TITLE,BAMPFA.ARTISTFILMMAKER,BAMPFA.YEAR,EVENTS.DC-COVERAGE,EVENTS.DC-PUBLISHER,EVENTS.RELATED_EXHIBITIONS,EVENTS.EVENT_LOCATION,EVENTS.DC-DESCRIPTION,EVENTS.DC-TYPE,EVENTS.DC-SUBJECT,EVENTS.TOPICAL_SUBJECT,EVENTS.ORGANIZER,EVENTS.DC-CONTRIBUTOR,EVENTS.DC-RIGHTS,EVENTS.DC-AUTHOR,EVENTS.TAGS,EVENTS.BAM_PFA_CAPTION,EVENTS.RESTRICTIONS,EVENTS.DC-CREATOR,FILM.BAM_PFA_CAPTION,FILM.DC-CONTRIBUTOR,FILM.DC-CREATOR,FILM.DC-DESCRIPTION,FILM.DC-PUBLISHER,FILM.DC-RIGHTS,FILM.DC-SUBJECT,FILM.DC-TYPE,FILM.RESTRICTIONS,FILM.TAGS,GALLERY EXHIBITION.ARTWORK_CREDIT_LINE,GALLERY EXHIBITION.ARTWORK_MEDIUM,GALLERY EXHIBITION.BAM_PFA_CAPTION,GALLERY EXHIBITION.CURATOR,GALLERY EXHIBITION.DC-CONTRIBUTOR,GALLERY EXHIBITION.DC-COVERAGE,GALLERY EXHIBITION.DC-CREATOR,GALLERY EXHIBITION.DC-DESCRIPTION,GALLERY EXHIBITION.DC-PUBLISHER,GALLERY EXHIBITION.DC-RIGHTS,GALLERY EXHIBITION.DC-TITLE,GALLERY EXHIBITION.DC-TYPE,GALLERY EXHIBITION.EXHIBITION LOCATION,GALLERY EXHIBITION.FULL_EXHIBIT_DATE,GALLERY EXHIBITION.PHOTO_CREDIT,GALLERY EXHIBITION.RESTRICTIONS,GALLERY EXHIBITION.TAGS,XMP.USAGETERMS\n";
-// and one without the headers (to append to an existing file)
-$METADATA_VALUES = "";
-$metadataFields = array("bampfatitle","bampfaartist","bampfayear","eventfulldate","eventseries","eventrelatedex","eventlocation","eventdescription","eventtype","eventpeople","eventsubject","eventorganizer","eventimagesource","eventimagecopyright","eventphotocredit","eventbampfacaption","eventrestrictions","eventtagarray","eventuploader","filmbampfacaption","filmcontrib","filmuploader","filmdescription","filmseries","filmrights","filmpeople","filmtype","filmtagarray","filmrestrictions","exhcreditline","exhmedium","exhbampfacaption","exhcurator","exhsource","exhyearofexh","exhuploader","exhdescription","exhnameofexh","exhcopyright","exhartworktitle","exhimagetype","exhlocation","exhfulldates","exhphotocredit","exhtagarray","exhrestrictions","exhrights");
+$HEADERS = "FILENAME|BAMPFA.TITLE|BAMPFA.ARTISTFILMMAKER|BAMPFA.YEAR|EVENTS.DC-COVERAGE|EVENTS.DC-PUBLISHER|EVENTS.RELATED_EXHIBITIONS|EVENTS.EVENT_LOCATION|EVENTS.DC-DESCRIPTION|EVENTS.DC-TYPE|EVENTS.DC-SUBJECT|EVENTS.TOPICAL_SUBJECT|EVENTS.ORGANIZER|EVENTS.DC-CONTRIBUTOR|EVENTS.DC-RIGHTS|EVENTS.DC-AUTHOR|EVENTS.TAGS|EVENTS.BAM_PFA_CAPTION|EVENTS.RESTRICTIONS|EVENTS.DC-CREATOR|FILM.BAM_PFA_CAPTION|FILM.DC-CONTRIBUTOR|FILM.DC-CREATOR|FILM.DC-DESCRIPTION|FILM.DC-PUBLISHER|FILM.DC-RIGHTS|FILM.DC-SUBJECT|FILM.DC-TYPE|FILM.RESTRICTIONS|FILM.TAGS|GALLERY EXHIBITION.ARTWORK_CREDIT_LINE|GALLERY EXHIBITION.ARTWORK_MEDIUM|GALLERY EXHIBITION.BAM_PFA_CAPTION|GALLERY EXHIBITION.CURATOR|GALLERY EXHIBITION.DC-CONTRIBUTOR|GALLERY EXHIBITION.DC-COVERAGE|GALLERY EXHIBITION.DC-CREATOR|GALLERY EXHIBITION.DC-DESCRIPTION|GALLERY EXHIBITION.DC-PUBLISHER|GALLERY EXHIBITION.DC-RIGHTS|GALLERY EXHIBITION.DC-TITLE|GALLERY EXHIBITION.DC-TYPE|GALLERY EXHIBITION.EXHIBITION LOCATION|GALLERY EXHIBITION.FULL_EXHIBIT_DATE|GALLERY EXHIBITION.PHOTO_CREDIT|GALLERY EXHIBITION.RESTRICTIONS|GALLERY EXHIBITION.TAGS|XMP.USAGETERMS";
+// METADATA_VALUES WILL HAVE EACH ELEMENT IN THE ARRAY AS A ROW TO BE OUTPUT TO CSV
+$METADATA_VALUES = [];
+$metadataFieldNames = array("bampfatitle","bampfaartist","bampfayear","eventfulldate","eventseries","eventrelatedex","eventlocation","eventdescription","eventtype","eventpeople","eventsubject","eventorganizer","eventimagesource","eventimagecopyright","eventphotocredit","eventbampfacaption","eventrestrictions","eventtagarray","eventuploader","filmbampfacaption","filmcontrib","filmuploader","filmdescription","filmseries","filmrights","filmpeople","filmtype","filmtagarray","filmrestrictions","exhcreditline","exhmedium","exhbampfacaption","exhcurator","exhsource","exhyearofexh","exhuploader","exhdescription","exhnameofexh","exhcopyright","exhartworktitle","exhimagetype","exhlocation","exhfulldates","exhphotocredit","exhtagarray","exhrestrictions","exhrights");
 
 // get the category for the FTP destination and metadata.csv creation
 $category = $_POST['category'];
@@ -27,7 +26,7 @@ foreach($_FILES['file']['tmp_name'] as $key => $tmp_name ){
     if (in_array($file_mime, $good_mimes_bro)){
         // ----- ASSIGN METADATA VALUES ----------
         $filepath =  "K:\\ftp_ucbcspace\\BAMPFA\\" . $ftpDir . "\\" . $basename;
-        foreach($metadataFields as $field){
+        foreach($metadataFieldNames as $field){
             // SET EMPTY $_POST VALUES TO EMPTY STRING OR ARRAY
             if (!isset($_POST[$field])){
                 if (strpos($field, 'array')){
@@ -51,11 +50,8 @@ foreach($_FILES['file']['tmp_name'] as $key => $tmp_name ){
             $exhtags = implode(";", $exhtagarray);      
         }
 
-        // add values to the header version
-        $METADATA .= "$filepath,$bampfatitle,$bampfaartist,$bampfayear,$eventfulldate,$eventseries,$eventrelatedex,$eventlocation,$eventdescription,$eventtype,$eventpeople,$eventsubject,$eventorganizer,$eventimagesource,$eventimagecopyright,$eventphotocredit,$eventtags,$eventbampfacaption,$eventrestrictions,$eventuploader,$filmbampfacaption,$filmcontrib,$filmuploader,$filmdescription,$filmseries,$filmrights,$filmpeople,$filmtype,$filmrestrictions,$filmtags,$exhcreditline,$exhmedium,$exhbampfacaption,$exhcurator,$exhsource,$exhyearofexh,$exhuploader,$exhdescription,$exhnameofexh,$exhcopyright,$exhartworktitle,$exhimagetype,$exhlocation,$exhfulldates,$exhphotocredit,$exhrestrictions,$exhtags,$exhrights\n";
-        // add values to the headerless version
-        $METADATA_VALUES .= "$filepath,$bampfatitle,$bampfaartist,$bampfayear,$eventfulldate,$eventseries,$eventrelatedex,$eventlocation,$eventdescription,$eventtype,$eventpeople,$eventsubject,$eventorganizer,$eventimagesource,$eventimagecopyright,$eventphotocredit,$eventtags,$eventbampfacaption,$eventrestrictions,$eventuploader,$filmbampfacaption,$filmcontrib,$filmuploader,$filmdescription,$filmseries,$filmrights,$filmpeople,$filmtype,$filmrestrictions,$filmtags,$exhcreditline,$exhmedium,$exhbampfacaption,$exhcurator,$exhsource,$exhyearofexh,$exhuploader,$exhdescription,$exhnameofexh,$exhcopyright,$exhartworktitle,$exhimagetype,$exhlocation,$exhfulldates,$exhphotocredit,$exhrestrictions,$exhtags,$exhrights\n";
-
+        // add a row for each file to the metadata value array
+        array_push($METADATA_VALUES,"$filepath|$bampfatitle|$bampfaartist|$bampfayear|$eventfulldate|$eventseries|$eventrelatedex|$eventlocation|$eventdescription|$eventtype|$eventpeople|$eventsubject|$eventorganizer|$eventimagesource|$eventimagecopyright|$eventphotocredit|$eventtags|$eventbampfacaption|$eventrestrictions|$eventuploader|$filmbampfacaption|$filmcontrib|$filmuploader|$filmdescription|$filmseries|$filmrights|$filmpeople|$filmtype|$filmrestrictions|$filmtags|$exhcreditline|$exhmedium|$exhbampfacaption|$exhcurator|$exhsource|$exhyearofexh|$exhuploader|$exhdescription|$exhnameofexh|$exhcopyright|$exhartworktitle|$exhimagetype|$exhlocation|$exhfulldates|$exhphotocredit|$exhrestrictions|$exhtags|$exhrights");
         //  ------- END ASSIGN METADATA VALUES ----
         //
         //  ------- FTP THE FILE ---------
@@ -74,9 +70,22 @@ $metaCSVname = getcwd() . "/uploads/" . $today . "_" . $category . "_metadata.cs
 
 // -------- IF METADATA CSV ALREADY EXISTS, APPEND TO IT, OTHERWISE CREATE IT 
 if (file_exists($metaCSVname)){
-    file_put_contents($metaCSVname, $METADATA_VALUES, FILE_APPEND);
+    $metadataArray = array($METADATA_VALUES);
+    print_r($metadataArray);
+    $file = fopen($metaCSVname,"a+");
+    foreach ($metadataArray as $line){
+        fputcsv($file,explode(',',$line));
+    }
+    fclose($file);
 } else{
-    file_put_contents($metaCSVname, $METADATA);
+    // ADD HEADERS AS FIRST ELEMENT IN VALUE ARRAY IF THE FILE DOESN'T EXIST YET
+    array_unshift($METADATA_VALUES, $HEADERS);
+    $file = fopen($metaCSVname,"a+");
+    foreach ($METADATA_VALUES as $row) {
+        echo $row;
+        fputcsv($file,explode('|',$row));
+    }
+    fclose($file);
 }
 
 // FTP the new or updated metadata.csv
