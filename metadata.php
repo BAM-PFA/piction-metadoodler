@@ -1,19 +1,21 @@
 <?php
 echo "<html><body>";
-
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL|E_STRICT);
 include 'ftp.php';
 
 // --- INITIALIZE METADATA.CSV COLUMNS
 $HEADERS = "FILENAME|BAMPFA.TITLE|BAMPFA.ARTISTFILMMAKER|BAMPFA.YEAR|EVENTS.DC-COVERAGE|EVENTS.DC-PUBLISHER|EVENTS.RELATED_EXHIBITIONS|EVENTS.EVENT_LOCATION|EVENTS.DC-DESCRIPTION|EVENTS.DC-TYPE|EVENTS.DC-SUBJECT|EVENTS.TOPICAL_SUBJECT|EVENTS.ORGANIZER|EVENTS.DC-CONTRIBUTOR|EVENTS.DC-RIGHTS|EVENTS.DC-AUTHOR|EVENTS.TAGS|EVENTS.BAM_PFA_CAPTION|EVENTS.RESTRICTIONS|EVENTS.DC-CREATOR|FILM.BAM_PFA_CAPTION|FILM.DC-CONTRIBUTOR|FILM.DC-CREATOR|FILM.DC-DESCRIPTION|FILM.DC-PUBLISHER|FILM.DC-RIGHTS|FILM.DC-SUBJECT|FILM.DC-TYPE|FILM.RESTRICTIONS|FILM.TAGS|GALLERY EXHIBITION.ARTWORK_CREDIT_LINE|GALLERY EXHIBITION.ARTWORK_MEDIUM|GALLERY EXHIBITION.BAM_PFA_CAPTION|GALLERY EXHIBITION.CURATOR|GALLERY EXHIBITION.DC-CONTRIBUTOR|GALLERY EXHIBITION.DC-COVERAGE|GALLERY EXHIBITION.DC-CREATOR|GALLERY EXHIBITION.DC-DESCRIPTION|GALLERY EXHIBITION.DC-PUBLISHER|GALLERY EXHIBITION.DC-RIGHTS|GALLERY EXHIBITION.DC-TITLE|GALLERY EXHIBITION.DC-TYPE|GALLERY EXHIBITION.EXHIBITION LOCATION|GALLERY EXHIBITION.FULL_EXHIBIT_DATE|GALLERY EXHIBITION.PHOTO_CREDIT|GALLERY EXHIBITION.RESTRICTIONS|GALLERY EXHIBITION.TAGS|XMP.USAGETERMS";
 // METADATA_VALUES WILL HAVE EACH ELEMENT IN THE ARRAY AS A ROW TO BE OUTPUT TO CSV
-$METADATA_VALUES = [];
+$METADATA_VALUES = array();
 $metadataFieldNames = array("bampfatitle","bampfaartist","bampfayear","eventfulldate","eventseries","eventrelatedex","eventlocation","eventdescription","eventtype","eventpeople","eventsubject","eventorganizer","eventimagesource","eventimagecopyright","eventphotocredit","eventbampfacaption","eventrestrictions","eventtagarray","eventuploader","filmbampfacaption","filmcontrib","filmuploader","filmdescription","filmseries","filmrights","filmpeople","filmtype","filmtagarray","filmrestrictions","exhcreditline","exhmedium","exhbampfacaption","exhcurator","exhsource","exhyearofexh","exhuploader","exhdescription","exhnameofexh","exhcopyright","exhartworktitle","exhimagetype","exhlocation","exhfulldates","exhphotocredit","exhtagarray","exhrestrictions","exhrights");
 
 // get the category for the FTP destination and metadata.csv creation
 $category = $_POST['category'];
 echo "<div><b>".$category."</b></div>";
 $ftpDir = "zz_hothothotfolders\\" . $category;
-
+print_r($_POST);
 //  ------  GET TEMP FILES -------------
 foreach($_FILES['file']['tmp_name'] as $key => $tmp_name ){
     $file_name = $_FILES['file']['name'][$key];
