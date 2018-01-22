@@ -1,9 +1,18 @@
 <?php
-echo "<html><body>";
-
+echo "<!DOCTYPE html><html>
+    <head>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' integrity='sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ' crossorigin='anonymous'>
+        <script src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' crossorigin='anonymous'></script>
+        <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js' integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl' crossorigin='anonymous'></script>
+    </head>
+    <body>";
+//ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL|E_STRICT);
 include 'ftp.php';
 
-// --- INITIALIZE METADATA.CSV COLUMNS
+// --- INITIALIZE METADATA.CSV COLUMNS ---
 $HEADERS = "FILENAME|BAMPFA.TITLE|BAMPFA.ARTISTFILMMAKER|BAMPFA.YEAR|EVENTS.DC-COVERAGE|EVENTS.DC-PUBLISHER|EVENTS.RELATED_EXHIBITIONS|EVENTS.EVENT_LOCATION|EVENTS.DC-DESCRIPTION|EVENTS.DC-TYPE|EVENTS.DC-SUBJECT|EVENTS.TOPICAL_SUBJECT|EVENTS.ORGANIZER|EVENTS.DC-CONTRIBUTOR|EVENTS.DC-RIGHTS|EVENTS.DC-AUTHOR|EVENTS.TAGS|EVENTS.BAM_PFA_CAPTION|EVENTS.RESTRICTIONS|EVENTS.DC-CREATOR|FILM.BAM_PFA_CAPTION|FILM.DC-CONTRIBUTOR|FILM.DC-CREATOR|FILM.DC-DESCRIPTION|FILM.DC-PUBLISHER|FILM.DC-RIGHTS|FILM.DC-SUBJECT|FILM.DC-TYPE|FILM.RESTRICTIONS|FILM.TAGS|GALLERY EXHIBITION.ARTWORK_CREDIT_LINE|GALLERY EXHIBITION.ARTWORK_MEDIUM|GALLERY EXHIBITION.BAM_PFA_CAPTION|GALLERY EXHIBITION.CURATOR|GALLERY EXHIBITION.DC-CONTRIBUTOR|GALLERY EXHIBITION.DC-COVERAGE|GALLERY EXHIBITION.DC-CREATOR|GALLERY EXHIBITION.DC-DESCRIPTION|GALLERY EXHIBITION.DC-PUBLISHER|GALLERY EXHIBITION.DC-RIGHTS|GALLERY EXHIBITION.DC-TITLE|GALLERY EXHIBITION.DC-TYPE|GALLERY EXHIBITION.EXHIBITION LOCATION|GALLERY EXHIBITION.FULL_EXHIBIT_DATE|GALLERY EXHIBITION.PHOTO_CREDIT|GALLERY EXHIBITION.RESTRICTIONS|GALLERY EXHIBITION.TAGS|XMP.USAGETERMS";
 // METADATA_VALUES WILL HAVE EACH ELEMENT IN THE ARRAY AS A ROW TO BE OUTPUT TO CSV
 $METADATA_VALUES = [];
@@ -11,8 +20,10 @@ $metadataFieldNames = array("bampfatitle","bampfaartist","bampfayear","eventfull
 
 // get the category for the FTP destination and metadata.csv creation
 $category = $_POST['category'];
-echo "<div><b>".$category."</b></div>";
 $ftpDir = "zz_hothothotfolders\\" . $category;
+
+echo "<div class='container'><div class='panel-group'>";
+echo "<div class ='panel panel-info'><div class='panel-heading'>UPLOADING IMAGES TO THIS CATEGORY:</div><div class='panel-body'>" . $category . "</div></div>";
 
 //  ------  GET TEMP FILES -------------
 foreach($_FILES['file']['tmp_name'] as $key => $tmp_name ){
@@ -70,25 +81,28 @@ $metaCSVname = getcwd() . "/uploads/" . $today . "_" . $category . "_metadata.cs
 
 // -------- IF METADATA CSV ALREADY EXISTS, APPEND TO IT, OTHERWISE CREATE IT 
 if (file_exists($metaCSVname)){
-    $metadataArray = array($METADATA_VALUES);
-    print_r($metadataArray);
+    // print_r($metadataArray);
     $file = fopen($metaCSVname,"a+");
-    foreach ($metadataArray as $line){
-        fputcsv($file,explode(',',$line));
+    foreach ($METADATA_VALUES as $line){
+        fputcsv($file,explode('|',$line));
     }
     fclose($file);
 } else{
     // ADD HEADERS AS FIRST ELEMENT IN VALUE ARRAY IF THE FILE DOESN'T EXIST YET
     array_unshift($METADATA_VALUES, $HEADERS);
-    $file = fopen($metaCSVname,"a+");
+    $file = fopen($metaCSVname,"w+");
     foreach ($METADATA_VALUES as $row) {
-        echo $row;
+        // echo $row;
         fputcsv($file,explode('|',$row));
     }
     fclose($file);
 }
 
 // FTP the new or updated metadata.csv
-ftpFile($metaCSVname,$ftpDir,"metadata.csv");
 
+ftpFile($metaCSVname,$ftpDir,"metadata.csv");
+echo "</div></div>";  
+
+
+echo "</body></html>";
 ?>

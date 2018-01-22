@@ -5,13 +5,13 @@ function ftpFile($source,$ftpDir,$basename){
 	//error_reporting(E_ALL|E_STRICT);
 	
 	$remoteFile = "$ftpDir$basename";
-        // echo "<br>" . $source . "...." . $ftpDir . "...." . $basename . "...." . $remoteFile . "<br>";
+    // echo "<br>" . $source . "...." . $ftpDir . "...." . $basename . "...." . $remoteFile . "<br>";
 	
 	$pictionServer = 'ucb1.piction.com';
 
 	$conn_id = ftp_connect($pictionServer);
 	// read credentials from a file outside the documentroot
-	$ftp_credential_array = file('../../ftp/ftp.txt',FILE_IGNORE_NEW_LINES);
+	$ftp_credential_array = file('/var/www/ftp/ftp.txt',FILE_IGNORE_NEW_LINES);
 	
 	$username = $ftp_credential_array[0];
 	$password = $ftp_credential_array[1];
@@ -21,11 +21,11 @@ function ftpFile($source,$ftpDir,$basename){
 
 	if (ftp_put($conn_id, $basename, $source, FTP_BINARY))
 	  {
-	  echo "<br>Successfully uploaded $basename.<br>";
+	  echo "<div class='panel panel-success'><div class='panel-heading'>SUCCESS!</div><div class='panel-body'>Successfully uploaded " . $basename . ".</div></div>";
 	  }
 	else
 	  {
-	  echo "<br>Error uploading $basename.<br>";
+	  echo "<div class='panel-danger'><div class='panel-heading'>ERROR!</div><div class='panel-body'>Error uploading " . $basename . ".</div></div>";
 	  }
 
 	// close connection
