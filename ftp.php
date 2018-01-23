@@ -21,11 +21,11 @@ function ftpFile($source,$ftpDir,$basename){
 
 	if (ftp_put($conn_id, $basename, $source, FTP_BINARY))
 	  {
-	  echo "<div class='panel panel-success'><div class='panel-heading'>SUCCESS!</div><div class='panel-body'>Successfully uploaded " . $basename . ".</div></div>";
+	  echo "<div class='card-success'><div class='card-header'>SUCCESS!</div><div class='card-block'>Successfully uploaded " . $basename . "</div></div>";
 	  }
 	else
 	  {
-	  echo "<div class='panel-danger'><div class='panel-heading'>ERROR!</div><div class='panel-body'>Error uploading " . $basename . ".</div></div>";
+	  echo "<div class='card-danger'><div class='card-header'>ERROR!</div><div class='card-block'>Error uploading " . $basename . "</div></div>";
 	  }
 
 	// close connection

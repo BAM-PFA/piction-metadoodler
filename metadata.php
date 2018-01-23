@@ -22,8 +22,8 @@ $metadataFieldNames = array("bampfatitle","bampfaartist","bampfayear","eventfull
 $category = $_POST['category'];
 $ftpDir = "zz_hothothotfolders\\" . $category;
 
-echo "<div class='container'><div class='panel-group'>";
-echo "<div class ='panel panel-info'><div class='panel-heading'>UPLOADING IMAGES TO THIS CATEGORY:</div><div class='panel-body'>" . $category . "</div></div>";
+echo "<div class='container'>";
+echo "<div class ='card card-info'><div class='card-header'>UPLOADING IMAGES TO THIS CATEGORY:</div><div class='card-block'>" . $category . "</div></div>";
 
 //  ------  GET TEMP FILES -------------
 foreach($_FILES['file']['tmp_name'] as $key => $tmp_name ){
@@ -101,7 +101,7 @@ if (file_exists($metaCSVname)){
 // FTP the new or updated metadata.csv
 
 ftpFile($metaCSVname,$ftpDir,"metadata.csv");
-echo "</div></div>";  
+echo "</div>";  
 
 
 echo "</body></html>";
