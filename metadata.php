@@ -23,7 +23,7 @@ $category = $_POST['category'];
 $ftpDir = "zz_hothothotfolders\\" . $category;
 
 echo "<div class='container'>";
-echo "<div class ='card card-info'><div class='card-header'>UPLOADING IMAGES TO THIS CATEGORY:</div><div class='card-block'>" . $category . "</div></div>";
+echo "<div class ='card card-info'><div class='card card-header'>UPLOADING IMAGES TO THIS CATEGORY:</div><div class='card card-block'>" . $category . "</div></div>";
 
 //  ------  GET TEMP FILES -------------
 foreach($_FILES['file']['tmp_name'] as $key => $tmp_name ){
