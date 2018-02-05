@@ -1,0 +1,15 @@
+Using a stanza in a vhost config that looks like this:
+<Directory /path/to/the/stuff>
+  <Limit GET PUT POST>
+   Order Deny,Allow
+   Allow from my.ip.add.range
+   Deny from all
+  </Limit>
+  <IfModule mod_php5.c>
+    php_admin_value post_max_size 5000M
+    php_admin_value upload_max_filesize 200M
+    php_admin_value max_file_uploads 500
+    php_admin_value memory_limit 512M
+    php_admin_value upload_tmp_dir /path/with/more/memory/available
+  </IfModule>
+</Directory>

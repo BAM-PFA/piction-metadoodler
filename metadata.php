@@ -1,4 +1,5 @@
 <?php
+ini_set('max_execution_time', 3000);
 echo "<!DOCTYPE html><html>
     <head>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css' integrity='sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ' crossorigin='anonymous'>
@@ -7,7 +8,7 @@ echo "<!DOCTYPE html><html>
         <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js' integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl' crossorigin='anonymous'></script>
     </head>
     <body>";
-//ini_set('display_errors', 1);
+// ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL|E_STRICT);
 include 'ftp.php';
@@ -21,16 +22,19 @@ $metadataFieldNames = array("bampfatitle","bampfaartist","bampfayear","eventfull
 // get the category for the FTP destination and metadata.csv creation
 $category = $_POST['category'];
 $ftpDir = "zz_hothothotfolders\\" . $category;
-
+// echo phpinfo();
 echo "<div class='container'>";
 echo "<div class ='card card-info'><div class='card card-header'>UPLOADING IMAGES TO THIS CATEGORY:</div><div class='card card-block'>" . $category . "</div></div>";
-
+// $tally = 0;
+// print_r($_FILES);
 //  ------  GET TEMP FILES -------------
 foreach($_FILES['file']['tmp_name'] as $key => $tmp_name ){
     $file_name = $_FILES['file']['name'][$key];
     $file_tmp = $_FILES['file']['tmp_name'][$key];
     $basename = basename($file_name);
-
+    // $size = $_FILES['file']['size'][$key];
+    // $tally += $size;
+    // echo $basename . " | " . $size . "<br/>";
     // sniff the file MIME type for use in accepting/rejecting a file
     $file_mime = mime_content_type($file_tmp);
     $good_mimes_bro = array('image/tiff','image/jpeg','image/png','image/gif');
@@ -40,6 +44,7 @@ foreach($_FILES['file']['tmp_name'] as $key => $tmp_name ){
         foreach($metadataFieldNames as $field){
             // SET EMPTY $_POST VALUES TO EMPTY STRING OR ARRAY
             if (!isset($_POST[$field])){
+
                 if (strpos($field, 'array')){
                     $$field = array('');
                 } else {
@@ -97,10 +102,10 @@ if (file_exists($metaCSVname)){
     }
     fclose($file);
 }
-
+// echo $tally;
 // FTP the new or updated metadata.csv
-
 ftpFile($metaCSVname,$ftpDir,"metadata.csv");
+
 echo "</div>";  
 
 
