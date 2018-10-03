@@ -24,6 +24,7 @@ $category = $_POST['category'];
 $ftpDir = "zz_hothothotfolders\\" . $category;
 // echo phpinfo();
 echo "<div class='container'>";
+echo "<nav class='navbar navbar-light'><a class='navbar-brand' href='http://archive.bampfa.berkeley.edu/piction-metadoodler/'><img src='https://bampfa.org/sites/all/themes/bam_pfa/logo.jpg' width='80' class='d-inline-block align-top' alt=''>PICTION METADOODLER</a></nav>";
 echo "<div class ='card card-info'><div class='card card-header'>UPLOADING IMAGES TO THIS CATEGORY:</div><div class='card card-block'>" . $category . "</div></div>";
 // $tally = 0;
 // print_r($_FILES);
