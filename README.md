@@ -12,8 +12,8 @@ Uses Bootstrap for styling.
 
 The uploading/data entry screen looks like this: 
 
-![Upload data entry screen](doodlerscreengrab1.png)
+![Upload data entry screen](doodlerscreengrab1.jpg)
 
 The result screen looks like this:
 
-![upload result screen](doodlerscreengrab2.png)
+![upload result screen](doodlerscreengrab2.jpg)
