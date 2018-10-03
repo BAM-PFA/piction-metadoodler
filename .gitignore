@@ -9,6 +9,7 @@
 *.png
 !question.png
 !badfile.jpg
+!doodlerscreengrab*.jpg
 201*.csv
 .htaccess
 .idea
