@@ -10,3 +10,10 @@ There are some basic security measures in place, we're looking at more....
 
 Uses Bootstrap for styling.
 
+The uploading/data entry screen looks like this: 
+
+![Upload data entry screen](screengrab1.png)
+
+The result screen looks like this:
+
+![upload result screen](screengrab2.png)
